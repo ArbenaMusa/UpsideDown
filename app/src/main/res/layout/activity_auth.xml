@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1">
+    android:background="@drawable/background1"
+    android:orientation="vertical">
 
     <TextView
         style="@style/large_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:paddingTop="@dimen/large_title_top_padding"
         android:text="@string/app_name"
         android:textFontWeight="900"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true" tools:targetApi="p"/>
+        tools:targetApi="p" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_log_layout_height"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/logTabs"
-            app:tabTextColor="@color/colorWhite"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/colorWhite" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/logViewpager"
