@@ -9,16 +9,21 @@ import com.am.upsidedown.auth.LogInFragment;
 import com.am.upsidedown.auth.SignUpFragment;
 import com.am.upsidedown.utils.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AuthActivity extends AppCompatActivity {
 
     private TabLayout logTabs;
     private ViewPager authViewPager;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        mAuth = FirebaseAuth.getInstance();
+
+        if(mAuth.getCurrentUser() != null) setContentView(R.layout.activity_main);
+        else setContentView(R.layout.activity_auth);
 
         logTabs = (TabLayout) findViewById(R.id.logTabs);
         authViewPager = (ViewPager) findViewById(R.id.logViewpager);
