@@ -25,6 +25,7 @@ public class SignUpFragment extends Fragment {
     private FirebaseAuth mAuth;
     private EditText etEmail, etPassword;
     private Button btnRegister;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +47,13 @@ public class SignUpFragment extends Fragment {
         return view;
     }
 
+    /**
+     * This method creates a new user with the given email and password using FirebaseAuth
+     * and redirects to MainActivity if register succeeds.
+     *
+     * @param email
+     * @param password
+     */
     private void registerNewUser(String email, String password) {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Please enter email...", Toast.LENGTH_LONG).show();
@@ -65,8 +73,7 @@ public class SignUpFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
                             getActivity().finish();
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getActivity(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
                         }
                     }

@@ -22,7 +22,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser() != null) setContentView(R.layout.activity_main);
+        if (mAuth.getCurrentUser() != null) setContentView(R.layout.activity_main);
         else setContentView(R.layout.activity_auth);
 
         logTabs = (TabLayout) findViewById(R.id.logTabs);
@@ -32,6 +32,12 @@ public class AuthActivity extends AppCompatActivity {
         logTabs.setupWithViewPager(authViewPager);
     }
 
+    /**
+     * This method displays tabs' fragments on ViewPager using ViewPagerAdapter
+     * and provides the methods used to perform Fragment Transactions (add, remove, replace fragments) through Fragment Manager.
+     *
+     * @param viewPager
+     */
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new LogInFragment(), "Log In");

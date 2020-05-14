@@ -47,6 +47,13 @@ public class LogInFragment extends Fragment {
         return view;
     }
 
+    /**
+     * This method authenticates the user using FirebaseAuth
+     * and redirects to MainActivity if login succeeds.
+     *
+     * @param email
+     * @param password
+     */
     private void loginUserAccount(String email, String password) {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Please enter email...", Toast.LENGTH_LONG).show();

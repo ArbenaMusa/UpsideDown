@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method detects user interaction with the side menu
      * and provides logout action handler.
+     *
      * @param item
      * @return
      */
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method inflates side_menu resource.
+     *
      * @param menu
      * @return
      */
