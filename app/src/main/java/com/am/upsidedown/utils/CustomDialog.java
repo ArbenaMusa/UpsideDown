@@ -20,7 +20,7 @@ public class CustomDialog extends Dialog {
         super(context);
     }
 
-      /**
+    /**
      * This method sets the dialog's view content,
      * handles the close button action
      * and returns the dialog object.
@@ -38,11 +38,9 @@ public class CustomDialog extends Dialog {
             }
         });
 
-        this.setOnCancelListener(new DialogInterface.OnCancelListener()
-        {
+        this.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
-            public void onCancel(DialogInterface dialog)
-            {
+            public void onCancel(DialogInterface dialog) {
                 getOwnerActivity().finish();
             }
         });

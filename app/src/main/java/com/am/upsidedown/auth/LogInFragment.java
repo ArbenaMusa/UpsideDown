@@ -29,7 +29,7 @@ public class LogInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.login_fragment, container, false);
         mAuth = FirebaseAuth.getInstance();
 
         etEmail = view.findViewById(R.id.setEmail);

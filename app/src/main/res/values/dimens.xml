@@ -7,4 +7,6 @@
     <dimen name="log_fragment_bottom_padding">30dp</dimen>
     <dimen name="log_fragment_padding">80sp</dimen>
     <dimen name="log_button_width">220dp</dimen>
+
+    <dimen name="main_fragment_padding">10sp</dimen>
 </resources>
