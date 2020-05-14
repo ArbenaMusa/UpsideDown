@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.am.upsidedown.utils.CustomDialog;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method detects user interaction with the side menu
+     * This method detects user interaction with the side menu,
+     * pops up the preferences dialog
      * and provides logout action handler.
      *
      * @param item
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.side_menu_settings:
-                Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_LONG).show();
+                CustomDialog preferencesDialog = (CustomDialog) new CustomDialog(this)
+                        .setLayout(R.layout.dialog_preference);
+                preferencesDialog.show();
                 return true;
             case R.id.side_menu_logout:
                 Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
