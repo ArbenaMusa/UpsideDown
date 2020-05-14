@@ -6,4 +6,10 @@
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
+    <string name="setting">Settings</string>
+    <string name="logout">Logout</string>
 </resources>
