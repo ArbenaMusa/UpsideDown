@@ -12,4 +12,13 @@
 
     <string name="setting">Settings</string>
     <string name="logout">Logout</string>
+
+    <string name="electrician">Electrician</string>
+    <string name="plumber">Plumber</string>
+    <string name="painter">Painter</string>
+    <string name="housekeeper">Housekeeper</string>
+    <string name="gardener">Gardener</string>
+    <string name="chimneysweep">Chimneysweep</string>
+    <string name="mechanic">Mechanic</string>
+    <string name="mjeshter">Mjeshter</string>
 </resources>
