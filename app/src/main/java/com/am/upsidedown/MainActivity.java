@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.am.upsidedown.chat.ChatFragment;
+import com.am.upsidedown.feed.FeedFragment;
+import com.am.upsidedown.review.ReviewFragment;
 import com.am.upsidedown.utils.CustomDialog;
 import com.am.upsidedown.utils.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FeedFragment().newInstance(), "Feed");
+        adapter.addFragment(new ReviewFragment().newInstance(), "Review");
         adapter.addFragment(new ChatFragment().newInstance(), "Chats");
         viewPager.setAdapter(adapter);
     }
