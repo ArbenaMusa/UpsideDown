@@ -1,7 +1,11 @@
 package com.am.upsidedown;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -15,15 +19,19 @@ import com.am.upsidedown.feed.FeedFragment;
 import com.am.upsidedown.review.ReviewFragment;
 import com.am.upsidedown.utils.CustomDialog;
 import com.am.upsidedown.utils.ViewPagerAdapter;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
     private TabLayout tabs;
     private ViewPager viewPager;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +40,29 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tabs = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setupViewPager(viewPager);
         tabs.setupWithViewPager(viewPager);
+
+        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                getSelectedPage(item.getItemId());
+                return true;
+            }
+        });
+
     }
 
     /**
@@ -68,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
         int id = item.getItemId();
         switch (id) {
             case R.id.side_menu_settings:
@@ -95,5 +118,45 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.side_menu, menu);
         return true;
+    }
+
+    /**
+     * This method is called if any navigation item from navigation menu is selected
+     * and it performs the corresponding action (redirects to another activity or changes fragment).
+     * @param id
+     * @return
+     */
+    private boolean getSelectedPage(int id) {
+        switch (id) {
+            case R.id.nav_item1:
+                break;
+            case R.id.nav_item2:
+                break;
+            case R.id.nav_item3:
+                break;
+            case R.id.nav_item4:
+                break;
+            case R.id.nav_item5:
+                break;
+            case R.id.nav_item6:
+                break;
+            default:
+                return true;
+        }
+        return true;
+    }
+
+    /**
+     * This method handles back button press action,
+     * if navigation menu is opened only the drawer layout closes,
+     * else the hole app closes.
+     */
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            finishAffinity();
+        }
     }
 }
