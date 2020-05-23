@@ -53,4 +53,20 @@
     <string name="chimneysweep">Chimneysweep</string>
     <string name="mechanic">Mechanic</string>
     <string name="mjeshter">Mjeshter</string>
+
+    <string-array name="role">
+        <item>User</item>
+        <item>Workman</item>
+    </string-array>
+
+    <string-array name="Jobpositions">
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Painter</item>
+        <item>Housekeeper</item>
+        <item>Gardener</item>
+        <item>Chimneysweep</item>
+        <item>Mechanic</item>
+        <item>Mjeshter</item>
+    </string-array>
 </resources>
