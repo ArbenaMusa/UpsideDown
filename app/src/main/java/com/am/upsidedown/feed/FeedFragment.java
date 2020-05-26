@@ -1,7 +1,9 @@
 package com.am.upsidedown.feed;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.am.upsidedown.FeedActivity;
 import com.am.upsidedown.R;
 
 public class FeedFragment extends Fragment {
@@ -25,7 +28,16 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.feed_fragment, container, false);
+        View view = inflater.inflate(R.layout.feed_fragment, container, false);
+        CardView card = view.findViewById(R.id.electrician);
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent feedActivity = new Intent(getActivity(), FeedActivity.class);
+                startActivity(feedActivity);
+            }
+        });
+        return view;
     }
 
     @Override

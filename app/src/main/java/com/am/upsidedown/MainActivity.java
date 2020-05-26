@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.signOut();
                 startActivity(new Intent(MainActivity.this, AuthActivity.class));
                 finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

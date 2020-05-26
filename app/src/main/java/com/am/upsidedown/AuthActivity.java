@@ -3,6 +3,7 @@ package com.am.upsidedown;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.am.upsidedown.auth.LogInFragment;
@@ -22,8 +23,12 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        if (mAuth.getCurrentUser() != null) setContentView(R.layout.activity_main);
-        else setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_auth);
+        if(mAuth.getCurrentUser() != null){
+            Intent innerActivity = new Intent(AuthActivity.this, MainActivity.class);
+            startActivity(innerActivity);
+            finish();
+        }
 
         logTabs = (TabLayout) findViewById(R.id.logTabs);
         authViewPager = (ViewPager) findViewById(R.id.logViewpager);
