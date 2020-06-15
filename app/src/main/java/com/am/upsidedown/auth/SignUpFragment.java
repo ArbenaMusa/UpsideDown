@@ -54,7 +54,7 @@ public class SignUpFragment extends Fragment {
      * @param email
      * @param password
      */
-    private void registerNewUser(String email, String password) {
+    private void registerNewUser(final String email, final String password) {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Please enter email...", Toast.LENGTH_LONG).show();
             return;
@@ -70,7 +70,9 @@ public class SignUpFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            Intent intent = new Intent (getActivity(), RegisterForm.class);
+                            intent.putExtra("email", email);
+                            intent.putExtra("password", password);
                             startActivity(intent);
                             getActivity().finish();
                         } else {
