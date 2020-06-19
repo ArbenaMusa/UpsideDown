@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 
 import com.am.upsidedown.MainActivity;
 import com.am.upsidedown.R;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class ReviewFragment extends Fragment {
 
@@ -29,6 +34,8 @@ public class ReviewFragment extends Fragment {
     EditText mFeedback;
     Button mSendFeedback;
 
+    Snackbar snackbar;
+
 
     public static ReviewFragment newInstance() {
         return new ReviewFragment();
@@ -38,6 +45,10 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.review_fragment, container, false);
+
+        snackbar = Snackbar.make(view, "Welcome and thank you for rating our app!", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setDuration(5000);
+        snackbar.show();
 
         mRatingBar = view.findViewById(R.id.ratingBar);
         mRatingScale = view.findViewById(R.id.tvRatingScale);
@@ -71,6 +82,7 @@ public class ReviewFragment extends Fragment {
         });
         return view;
 
+       
 
        /** mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override

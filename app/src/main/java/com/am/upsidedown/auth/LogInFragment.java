@@ -13,10 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+
 import com.am.upsidedown.MainActivity;
 import com.am.upsidedown.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -35,6 +37,7 @@ public class LogInFragment extends Fragment {
         etEmail = view.findViewById(R.id.setEmail);
         etPassword = view.findViewById(R.id.setPassword);
         logInButton = view.findViewById(R.id.log_in_btn);
+
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
