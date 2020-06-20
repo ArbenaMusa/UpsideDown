@@ -80,24 +80,29 @@ public class ReviewFragment extends Fragment {
                 }
             }
         });
-        return view;
+
 
        
 
-       /** mSendFeedback.setOnClickListener(new View.OnClickListener() {
+       mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mFeedback.getText().toString().isEmpty()) {
-                    Toast.makeText(ReviewFragment.this, "Please fill in feedback text box", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Please fill in feedback text box", Toast.LENGTH_LONG).show();
+                    Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.blink_anim);
+                    mSendFeedback.startAnimation(animation);
                 } else {
                     mFeedback.setText("");
                     mRatingBar.setRating(0);
-                    Toast.makeText(ReviewFragment.this, "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
+                    Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fadein);
+                    mSendFeedback.startAnimation(animation);
                 }
+
             }
         });
         return view;
-        **/
+
 
     }
 

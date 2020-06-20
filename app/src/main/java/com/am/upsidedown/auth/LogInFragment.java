@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,7 +39,6 @@ public class LogInFragment extends Fragment {
         etEmail = view.findViewById(R.id.setEmail);
         etPassword = view.findViewById(R.id.setPassword);
         logInButton = view.findViewById(R.id.log_in_btn);
-
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
