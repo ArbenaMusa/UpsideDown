@@ -66,7 +66,7 @@ public class RegisterForm extends AppCompatActivity {
                 user = new User(name, surname, email, password, workmanOrUser, occupation);
 
                 FirebaseUser fireuser = mAuth.getCurrentUser();
-                updateUI(fireuser);
+//                updateUI(fireuser);
             }
         });
     }

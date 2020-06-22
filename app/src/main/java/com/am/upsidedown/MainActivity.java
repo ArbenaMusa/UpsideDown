@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.am.upsidedown.auth.RegisterForm;
 import com.am.upsidedown.chat.ChatFragment;
 import com.am.upsidedown.feed.FeedFragment;
 import com.am.upsidedown.review.ReviewFragment;
@@ -47,14 +48,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
+//        linearLayout = findViewById(R.id.activity_main);
         Bundle extras = getIntent().getExtras();
-        if(extras.getBoolean("isRegistered") == false){
-            Context mContext = getApplicationContext();
-            layoutInflater =(LayoutInflater) mContext.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.register_form, null);
-            popupWindow = new PopupWindow(container, 1000, 1800, true);
-            popupWindow.showAtLocation(linearLayout, Gravity.CENTER, 1100, 1900);
+
+        if(!extras.getBoolean("isRegistered")){
+//            Intent intent = new Intent(this, RegisterForm.class);
+//            startActivity(intent);
+//            layoutInflater =(LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.register_form, null);
+//            popupWindow = new PopupWindow(container, 1000, 1800, true);
+//            popupWindow.showAtLocation(linearLayout, Gravity.CENTER, 1100, 1900);
         }
 
         mAuth = FirebaseAuth.getInstance();
@@ -93,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FeedFragment().newInstance(), "Feed");
-        adapter.addFragment(new ReviewFragment().newInstance(), "Review");
         adapter.addFragment(new ChatFragment().newInstance(), "Chats");
+        adapter.addFragment(new ReviewFragment().newInstance(), "Review");
         viewPager.setAdapter(adapter);
     }
 
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 preferencesDialog.show();
                 return true;
             case R.id.side_menu_logout:
-                Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.logout, Toast.LENGTH_LONG).show();
                 mAuth.signOut();
                 startActivity(new Intent(MainActivity.this, AuthActivity.class));
                 finish();

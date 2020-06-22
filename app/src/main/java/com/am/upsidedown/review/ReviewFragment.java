@@ -20,7 +20,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.am.upsidedown.MainActivity;
 import com.am.upsidedown.R;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -28,14 +27,11 @@ import com.google.android.material.snackbar.Snackbar;
 public class ReviewFragment extends Fragment {
 
     private ReviewViewModel mViewModel;
-
-    RatingBar mRatingBar;
-    TextView mRatingScale;
-    EditText mFeedback;
-    Button mSendFeedback;
-
-    Snackbar snackbar;
-
+    private RatingBar mRatingBar;
+    private TextView mRatingScale;
+    private EditText mFeedback;
+    private Button mSendFeedback;
+    private Snackbar snackbar;
 
     public static ReviewFragment newInstance() {
         return new ReviewFragment();
@@ -46,7 +42,7 @@ public class ReviewFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.review_fragment, container, false);
 
-        snackbar = Snackbar.make(view, "Welcome and thank you for rating our app!", Snackbar.LENGTH_INDEFINITE);
+        snackbar = Snackbar.make(view, R.string.review_quote, Snackbar.LENGTH_INDEFINITE);
         snackbar.setDuration(5000);
         snackbar.show();
 
@@ -55,58 +51,64 @@ public class ReviewFragment extends Fragment {
         mFeedback = view.findViewById(R.id.etFeedback);
         mSendFeedback = view.findViewById(R.id.btnSubmit);
 
+        selectRatingStars();
+        sendFeedback();
+
+        return view;
+    }
+
+    /**
+     * This method displays rating text based on the number of stars that have been selected.
+     */
+    public void selectRatingStars(){
         mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 mRatingScale.setText(String.valueOf(v));
                 switch ((int) ratingBar.getRating()) {
                     case 1:
-                        mRatingScale.setText("Very bad");
+                        mRatingScale.setText(R.string.one);
                         break;
                     case 2:
-                        mRatingScale.setText("Need some improvement");
+                        mRatingScale.setText(R.string.two);
                         break;
                     case 3:
-                        mRatingScale.setText("Good");
+                        mRatingScale.setText(R.string.three);
                         break;
                     case 4:
-                        mRatingScale.setText("Great");
+                        mRatingScale.setText(R.string.four);
                         break;
                     case 5:
-                        mRatingScale.setText("Awesome. I love it");
+                        mRatingScale.setText(R.string.five);
                         break;
                     default:
                         mRatingScale.setText("");
                 }
             }
         });
+    }
 
-
-       
-
-       mSendFeedback.setOnClickListener(new View.OnClickListener() {
+    /**
+     * This method checks if the feedback field is filled.
+     */
+    public void sendFeedback(){
+        mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mFeedback.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(), "Please fill in feedback text box", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.feedback_error, Toast.LENGTH_LONG).show();
                     Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.blink_anim);
                     mSendFeedback.startAnimation(animation);
                 } else {
                     mFeedback.setText("");
                     mRatingBar.setRating(0);
-                    Toast.makeText(getActivity(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.feedback_message, Toast.LENGTH_SHORT).show();
                     Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fadein);
                     mSendFeedback.startAnimation(animation);
                 }
-
             }
         });
-        return view;
-
-
     }
-
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -115,6 +117,5 @@ public class ReviewFragment extends Fragment {
 
         // TODO: Use the ViewModel
     }
-
 }
 

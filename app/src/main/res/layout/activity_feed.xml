@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/feed_navgraph" />
+        app:navGraph="@navigation/feed_navgraph" >
+    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

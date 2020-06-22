@@ -4,9 +4,9 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
 
-    <string name="tab1">Tab 1</string>
-    <string name="tab2">Tab 2</string>
-    <string name="tab3">Tab 3</string>
+    <string name="feed">Feed</string>
+    <string name="chats">Chats</string>
+    <string name="review">Review</string>
 
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -69,6 +69,18 @@
         <item>Mechanic</item>
         <item>Mjeshter</item>
     </string-array>
+
+    <string name="one">Very bad!</string>
+    <string name="two">Needs some improvements!</string>
+    <string name="three">Good!</string>
+    <string name="four">Great!</string>
+    <string name="five">Awesome, I love it!</string>
+    <string name="review_quote">Your words make a difference on our improvement!</string>
+    <string name="feedback_title">We hope you enjoyed our work!</string>
+    <string name="feedback_error">Please fill in feedback text box, so we can get your opinion!</string>
+    <string name="feedback_message">Thank you for sharing your feedback!</string>
+    <string name="feedback_text">Share your opinion about us...</string>
+    <string name="send_feedback">Send feedback</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".review.ReviewFragment">
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,14 +19,13 @@
             app:layout_constraintBottom_toTopOf="@+id/etFeedback"
             app:layout_constraintTop_toTopOf="@+id/etFeedback">
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="We hope you enjoyed our work!"
+                android:text="@string/feedback_title"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/etFeedback"
@@ -52,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Awesome. I love it"
+                android:text= "@string/five"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/ratingBar"
@@ -66,7 +64,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:gravity="top"
-                android:hint="Tell us what you loved"
+                android:hint="@string/feedback_text"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
@@ -80,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:background="#0a1c20"
-                android:text="Send feedback"
+                android:text="@string/send_feedback"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/etFeedback"
