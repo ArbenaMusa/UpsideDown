@@ -8,10 +8,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.am.upsidedown.chat.ChatFragment;
@@ -32,11 +38,24 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabs;
     private ViewPager viewPager;
     private NavigationView navigationView;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        Bundle extras = getIntent().getExtras();
+        if(extras.getBoolean("isRegistered") == false){
+            Context mContext = getApplicationContext();
+            layoutInflater =(LayoutInflater) mContext.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.register_form, null);
+            popupWindow = new PopupWindow(container, 1000, 1800, true);
+            popupWindow.showAtLocation(linearLayout, Gravity.CENTER, 1100, 1900);
+        }
 
         mAuth = FirebaseAuth.getInstance();
 

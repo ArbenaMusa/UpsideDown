@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.am.upsidedown.MainActivity;
 import com.am.upsidedown.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +26,7 @@ public class SignUpFragment extends Fragment {
     private Button btnRegister;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sigup_fragment, container, false);
         mAuth = FirebaseAuth.getInstance();
@@ -71,6 +70,7 @@ public class SignUpFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Registration successful!", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent (getActivity(), RegisterForm.class);
+                            intent.putExtra("isRegistered",  false);
                             intent.putExtra("email", email);
                             intent.putExtra("password", password);
                             startActivity(intent);
