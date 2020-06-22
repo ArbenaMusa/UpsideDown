@@ -7,15 +7,11 @@ public class User {
     private String workmanOrUser;
     private String occupation;
     private String email;
-    private String password;
 
-    public User(String name, String surname, String email, String password, String workmanOrUser, String occupation) {
+    public User(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.password = password;
-        this.workmanOrUser = workmanOrUser;
-        this.occupation = occupation;
     }
 
     public String getName() {
@@ -24,10 +20,6 @@ public class User {
 
     public String getSurname() {
         return surname;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getEmail() {
@@ -60,9 +52,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

@@ -73,7 +73,6 @@ public class LogInFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Login successful!", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
-                            intent.putExtra("isRegistered",  true);
                             startActivity(intent);
                             getActivity().finish();
                         } else {

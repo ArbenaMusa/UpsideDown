@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="550dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@drawable/popup"
     android:padding="5dp">
-
-    <ImageView
-        android:id="@+id/btn_register_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_register_close" />
 
     <ImageView
         android:id="@+id/image"
@@ -68,7 +61,7 @@
         android:background="@drawable/rounded_button"
         android:clickable="true"
         android:text="Register"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorGrey"
         android:textSize="22sp" />
 
 </RelativeLayout>

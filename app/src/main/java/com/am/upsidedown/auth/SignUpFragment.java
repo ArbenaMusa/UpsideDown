@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.am.upsidedown.R;
+import com.am.upsidedown.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -69,10 +70,8 @@ public class SignUpFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent (getActivity(), RegisterForm.class);
-                            intent.putExtra("isRegistered",  false);
+                            Intent intent = new Intent (getActivity(), RegisterActivity.class);
                             intent.putExtra("email", email);
-                            intent.putExtra("password", password);
                             startActivity(intent);
                             getActivity().finish();
                         } else {
