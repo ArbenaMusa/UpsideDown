@@ -1,6 +1,7 @@
 package com.am.upsidedown;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.am.upsidedown.chat.ChatFragment;
@@ -25,19 +27,24 @@ import com.am.upsidedown.utils.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore firebaseFirestore;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
     private TabLayout tabs;
     private ViewPager viewPager;
     private NavigationView navigationView;
-    private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
-    private LinearLayout linearLayout;
+    private TextView name, email;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +52,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tabs = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        name = (TextView) findViewById(R.id.currentName);
+        email = (TextView) findViewById(R.id.currentEmail);
 
         setSupportActionBar(toolbar);
         setupViewPager(viewPager);
@@ -130,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called if any navigation item from navigation menu is selected
      * and it performs the corresponding action (redirects to another activity or changes fragment).
+     *
      * @param id
      * @return
      */

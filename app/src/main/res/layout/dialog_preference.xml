@@ -15,7 +15,7 @@
         android:layout_gravity="end"
         android:background="@drawable/rounded_button"
         android:gravity="center"
-        android:text="X"
+        android:text="@string/x"
         android:textColor="@color/colorWhite"
         android:textStyle="bold" />
 
@@ -29,8 +29,6 @@
             android:id="@+id/shape_layout"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:background="@drawable/circular_bordershape">
 
@@ -45,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/ic_launcher_background"
+                    android:contentDescription="@string/todo"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
