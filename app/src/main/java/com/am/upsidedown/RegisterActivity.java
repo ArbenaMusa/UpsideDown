@@ -9,11 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.am.upsidedown.auth.User;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final int GALLERY_REQUEST_CODE = 123;
     private ImageView userimage;
@@ -102,14 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        addItemsOnSpinner2();
-        addListenerOnSpinnerItemSelection();
+        userOrWorkman.setOnItemSelectedListener(this);
+
     }
 
     /**
      * onActivityResult will be called every time we choose an image from gallery
      * add Uri to store image data
-     * 
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -124,28 +127,40 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    // add items into spinner dynimacally
-    public void addItemsOnSpinner2() {
+    /**
+     * This method adds dynamically spinner2 when an item in spinner1 is selected
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
 
-        titleofJob = (Spinner) findViewById(R.id.spinner2);
-        List<String> list = new ArrayList<String>();
-        list.add("Electrician");
-        list.add("Plumber");
-        list.add("Painter");
-        list.add("Housekeeper");
-        list.add("Gardener");
-        list.add("Chimneysweep");
-        list.add("Mechanic");
-        list.add("Mjeshter");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        titleofJob.setAdapter(dataAdapter);
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        String sp1 = String.valueOf(userOrWorkman.getSelectedItem());
+        Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
+        if(sp1.contentEquals("Workman")) {
+            List<String> list = new ArrayList<String>();
+            list.add("Electrician");
+            list.add("Plumber");
+            list.add("Painter");
+            list.add("Housekeeper");
+            list.add("Gardener");
+            list.add("Chimneysweep");
+            list.add("Mechanic");
+            list.add("Mjeshter");
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            dataAdapter.notifyDataSetChanged();
+            titleofJob.setAdapter(dataAdapter);
+
+        }
+
     }
 
-    public void addListenerOnSpinnerItemSelection() {
-        userOrWorkman = (Spinner) findViewById(R.id.spinner1);
-        userOrWorkman.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
-
-
 }
