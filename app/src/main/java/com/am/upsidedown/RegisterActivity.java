@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import android.widget.Adapter;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,11 +40,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private static final int GALLERY_REQUEST_CODE = 123;
     private ImageView userimage;
     private EditText txtName, txtSurname;
-    private Spinner userOrWorkman, titleofJob;
+    private Spinner role, occupation;
     private Button btnRegisterUser;
     private Button btnPick;
     private String email, password;
-    private String name, surname, workmanOrUser, occupation;
+    private String userRole, userJob;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -58,10 +60,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         userimage = findViewById(R.id.image);
         txtName = findViewById(R.id.txtname);
         txtSurname = findViewById(R.id.txtsurname);
-        userOrWorkman = findViewById(R.id.spinner1);
-        titleofJob = findViewById(R.id.spinner2);
+        role = findViewById(R.id.spinner1);
+        occupation = findViewById(R.id.spinner2);
         btnRegisterUser = findViewById(R.id.btnregisterUser);
         btnPick = findViewById(R.id.btnPickImage);
+
+        role = (Spinner) findViewById(R.id.spinner1);
+        occupation = (Spinner) findViewById(R.id.spinner2);
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -88,6 +93,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 user.put("name", txtName.getText().toString());
                 user.put("surname", txtSurname.getText().toString());
                 user.put("email", email);
+                user.put("role", userRole);
+                if (userRole == "Workman") {
+                    user.put("occupation", userJob);
+                }
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -105,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        userOrWorkman.setOnItemSelectedListener(this);
+        role.setOnItemSelectedListener(this);
 
     }
 
@@ -127,6 +136,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         }
     }
 
+
     /**
      * This method adds dynamically spinner2 when an item in spinner1 is selected
      * @param parent
@@ -138,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        String sp1 = String.valueOf(userOrWorkman.getSelectedItem());
+        String sp1 = String.valueOf(role.getSelectedItem());
         Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
         if(sp1.contentEquals("Workman")) {
             List<String> list = new ArrayList<String>();
@@ -153,14 +163,16 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             dataAdapter.notifyDataSetChanged();
-            titleofJob.setAdapter(dataAdapter);
+            occupation.setAdapter(dataAdapter);
 
         }
 
     }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+            }
+       
 
-    }
+
 }
