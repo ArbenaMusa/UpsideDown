@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegisterActivity extends AppCompatActivity{
 
     private static final int GALLERY_REQUEST_CODE = 123;
     private ImageView userimage;
@@ -114,8 +114,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        role.setOnItemSelectedListener(this);
-
+        addItemsOnSpinner2();
+        addListenerOnSpinnerItemSelection();
     }
 
     /**
@@ -139,40 +139,47 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     /**
      * This method adds dynamically spinner2 when an item in spinner1 is selected
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
+     *
      */
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        String sp1 = String.valueOf(role.getSelectedItem());
-        Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
-        if(sp1.contentEquals("Workman")) {
-            List<String> list = new ArrayList<String>();
-            list.add("Electrician");
-            list.add("Plumber");
-            list.add("Painter");
-            list.add("Housekeeper");
-            list.add("Gardener");
-            list.add("Chimneysweep");
-            list.add("Mechanic");
-            list.add("Mjeshter");
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            dataAdapter.notifyDataSetChanged();
-            occupation.setAdapter(dataAdapter);
-
-        }
+    public void addItemsOnSpinner2(){
+        List<String> list = new ArrayList<String>();
+        list.add("Electrician");
+        list.add("Plumber");
+        list.add("Painter");
+        list.add("Housekeeper");
+        list.add("Gardener");
+        list.add("Chimneysweep");
+        list.add("Mechanic");
+        list.add("Mjeshter");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.notifyDataSetChanged();
+        occupation.setAdapter(dataAdapter);
 
     }
+
+    public void addListenerOnSpinnerItemSelection() {
+        role.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userRole = parent.getItemAtPosition(position).toString();
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-       
+        });
+        occupation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userJob = parent.getItemAtPosition(position).toString();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+    }
 }
