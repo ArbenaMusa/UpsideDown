@@ -54,10 +54,15 @@
     <string name="mechanic">Mechanic</string>
     <string name="mjeshter">Mjeshter</string>
 
+
+    <string name="role_prompt">Choose your role</string>
+
     <string-array name="role">
         <item>User</item>
         <item>Workman</item>
     </string-array>
+
+    <string name="jobPosition_prompt">Choose your job</string>
 
     <string-array name="Jobpositions">
         <item>Electrician</item>

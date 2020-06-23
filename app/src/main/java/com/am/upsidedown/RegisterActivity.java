@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,7 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -83,5 +86,33 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        addItemsOnSpinner2();
+        addListenerOnSpinnerItemSelection();
     }
+
+    // add items into spinner dynimacally
+    public void addItemsOnSpinner2() {
+
+        titleofJob = (Spinner) findViewById(R.id.spinner2);
+        List<String> list = new ArrayList<String>();
+        list.add("Electrician");
+        list.add("Plumber");
+        list.add("Painter");
+        list.add("Housekeeper");
+        list.add("Gardener");
+        list.add("Chimneysweep");
+        list.add("Mechanic");
+        list.add("Mjeshter");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        titleofJob.setAdapter(dataAdapter);
+    }
+
+    public void addListenerOnSpinnerItemSelection() {
+        userOrWorkman = (Spinner) findViewById(R.id.spinner1);
+        userOrWorkman.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    }
+
+
 }

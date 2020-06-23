@@ -45,7 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtsurname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:entries="@array/role"
+        android:prompt="@string/role_prompt"/>
 
     <Spinner
         android:id="@+id/spinner2"
@@ -53,7 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:prompt="@string/jobPosition_prompt"/>
 
     <Button
         android:id="@+id/btnregisterUser"
