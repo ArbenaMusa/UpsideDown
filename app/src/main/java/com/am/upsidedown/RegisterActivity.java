@@ -9,11 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.am.upsidedown.auth.User;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,11 +37,11 @@ public class RegisterActivity extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 123;
     private ImageView userimage;
     private EditText txtName, txtSurname;
-    private Spinner userOrWorkman, titleofJob;
+    private Spinner role, occupation;
     private Button btnRegisterUser;
     private Button btnPick;
     private String email, password;
-    private String name, surname, workmanOrUser, occupation;
+    private String userRole, userJob;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -55,10 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
         userimage = findViewById(R.id.image);
         txtName = findViewById(R.id.txtname);
         txtSurname = findViewById(R.id.txtsurname);
-        userOrWorkman = findViewById(R.id.spinner1);
-        titleofJob = findViewById(R.id.spinner2);
+        role = findViewById(R.id.spinner1);
+        occupation = findViewById(R.id.spinner2);
         btnRegisterUser = findViewById(R.id.btnregisterUser);
         btnPick = findViewById(R.id.btnPickImage);
+
+        role = (Spinner) findViewById(R.id.spinner1);
+        occupation = (Spinner) findViewById(R.id.spinner2);
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -85,6 +90,10 @@ public class RegisterActivity extends AppCompatActivity {
                 user.put("name", txtName.getText().toString());
                 user.put("surname", txtSurname.getText().toString());
                 user.put("email", email);
+                user.put("role", userRole);
+                if (userRole == "Workman") {
+                    user.put("occupation", userJob);
+                }
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -109,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * onActivityResult will be called every time we choose an image from gallery
      * add Uri to store image data
-     * 
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -126,8 +135,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     // add items into spinner dynimacally
     public void addItemsOnSpinner2() {
-
-        titleofJob = (Spinner) findViewById(R.id.spinner2);
         List<String> list = new ArrayList<String>();
         list.add("Electrician");
         list.add("Plumber");
@@ -139,13 +146,31 @@ public class RegisterActivity extends AppCompatActivity {
         list.add("Mjeshter");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        titleofJob.setAdapter(dataAdapter);
+        occupation.setAdapter(dataAdapter);
     }
 
     public void addListenerOnSpinnerItemSelection() {
-        userOrWorkman = (Spinner) findViewById(R.id.spinner1);
-        userOrWorkman.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        role.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userRole = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        occupation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userJob = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
-
-
 }
