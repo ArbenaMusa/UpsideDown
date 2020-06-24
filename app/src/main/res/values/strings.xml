@@ -92,4 +92,6 @@
     <string name="register">Register</string>
     <string name="user_profile_image">User Profile Image</string>
     <string name="x">X</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="pick_an_image">Pick an image</string>
 </resources>
