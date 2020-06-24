@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="@string/item_group1">
         <menu>
             <item
-                android:id="@+id/nav_item1"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="@string/nav_menu_item1" />
+                android:id="@+id/nav_electritian"
+                android:icon="@drawable/electrician"
+                android:title="@string/electrician" />
             <item
-                android:id="@+id/nav_item2"
-                android:icon="@drawable/ic_launcher_background"
-                android:title="@string/nav_menu_item2" />
+                android:id="@+id/plumber"
+                android:icon="@drawable/plumber"
+                android:title="@string/plumber" />
             <item
-                android:id="@+id/nav_item3"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="@string/nav_menu_item3" />
+                android:id="@+id/nav_painter"
+                android:icon="@drawable/painter"
+                android:title="@string/painter" />
             <item
-                android:id="@+id/nav_item4"
-                android:icon="@drawable/ic_launcher_background"
-                android:title="@string/nav_menu_item4" />
+                android:id="@+id/nav_housekeeper"
+                android:icon="@drawable/housekeeper"
+                android:title="@string/housekeeper" />
+            <item
+                android:id="@+id/nav_gardener"
+                android:icon="@drawable/gardener"
+                android:title="@string/gardener" />
+            <item
+                android:id="@+id/nav_chimneysweep"
+                android:icon="@drawable/chimney"
+                android:title="@string/chimneysweep" />
+            <item
+                android:id="@+id/nav_mechanic"
+                android:icon="@drawable/mechanic"
+                android:title="@string/mechanic" />
         </menu>
     </item>
 
     <item android:title="@string/item_group2">
         <menu>
             <item
-                android:id="@+id/nav_item5"
+                android:id="@+id/map"
                 android:icon="@drawable/ic_launcher_foreground"
-                android:title="@string/nav_menu_item5" />
+                android:title="@string/map" />
             <item
-                android:id="@+id/nav_item6"
+                android:id="@+id/map2"
                 android:icon="@drawable/ic_launcher_background"
-                android:title="@string/nav_menu_item6" />
+                android:title="@string/map2" />
         </menu>
     </item>
 

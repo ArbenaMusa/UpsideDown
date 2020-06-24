@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.am.upsidedown.chat.ChatFragment;
 import com.am.upsidedown.feed.FeedFragment;
 import com.am.upsidedown.review.ReviewFragment;
 import com.am.upsidedown.utils.CustomDialog;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView name, email;
     private String userId;
+    private String extra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FeedFragment().newInstance(), "Feed");
-        adapter.addFragment(new ChatFragment().newInstance(), "Chats");
         adapter.addFragment(new ReviewFragment().newInstance(), "Review");
         viewPager.setAdapter(adapter);
     }
@@ -139,18 +138,46 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private boolean getSelectedPage(int id) {
+        Intent feedActivity = new Intent(MainActivity.this, FeedActivity.class);
         switch (id) {
-            case R.id.nav_item1:
+            case R.id.nav_electritian:
+                extra = "Electritian";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
                 break;
-            case R.id.nav_item2:
+            case R.id.plumber:
+                extra = "Plumber";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
                 break;
-            case R.id.nav_item3:
+            case R.id.nav_painter:
+                extra = "Painter";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
                 break;
-            case R.id.nav_item4:
+            case R.id.nav_housekeeper:
+                extra = "Housekeeper";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
                 break;
-            case R.id.nav_item5:
+            case R.id.nav_gardener:
+                extra = "Gardener";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
                 break;
-            case R.id.nav_item6:
+            case R.id.nav_chimneysweep:
+                extra = "Chimneysweep";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
+                break;
+            case R.id.nav_mechanic:
+                extra = "mechanic";
+                feedActivity.putExtra("searched_job", extra);
+                startActivity(feedActivity);
+                break;
+            case R.id.map:
+                break;
+            case R.id.map2:
                 break;
             default:
                 return true;

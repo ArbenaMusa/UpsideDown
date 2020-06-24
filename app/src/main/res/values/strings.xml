@@ -11,15 +11,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="item_group1">Item Group 1</string>
-    <string name="item_group2">Item Group 2</string>
+    <string name="item_group1">Find your Workman</string>
+    <string name="item_group2">Find your place</string>
 
-    <string name="nav_menu_item1">Item1</string>
-    <string name="nav_menu_item2">Item2</string>
-    <string name="nav_menu_item3">Item3</string>
-    <string name="nav_menu_item4">Item4</string>
-    <string name="nav_menu_item5">Item5</string>
-    <string name="nav_menu_item6">Item6</string>
+    <string name="map">Send location</string>
+    <string name="map2">Find location</string>
 
     <string name="setting">Settings</string>
     <string name="logout">Logout</string>
