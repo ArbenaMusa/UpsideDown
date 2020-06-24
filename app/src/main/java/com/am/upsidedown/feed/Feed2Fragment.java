@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,15 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
+import com.am.upsidedown.FeedActivity;
 import com.am.upsidedown.R;
 import com.am.upsidedown.adapters.RecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class Feed2Fragment extends Fragment {
     RecyclerAdapter recyclerAdapter;
 
     List<String> moviesList;
-    DatabaseReference databaseReference;
+    String title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,8 +42,22 @@ public class Feed2Fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.feed2_fragment, container, false);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+        FeedActivity activity = (FeedActivity) getActivity();
+        String searchedJob = activity.getSearchedJob();
 
+        title = "Found " + searchedJob + "s";
+
+        Toolbar toolbar = view.findViewById(R.id.search_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((AppCompatActivity)getActivity()).finish();
+            }
+        });
 
         moviesList = new ArrayList<>();
         moviesList.add("Captain Marvel");
@@ -73,8 +89,8 @@ public class Feed2Fragment extends Fragment {
 //        });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        this.getActivity().getMenuInflater().inflate(R.menu.main_menu, menu);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.main_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -89,6 +105,5 @@ public class Feed2Fragment extends Fragment {
                 return false;
             }
         });
-        return getActivity().onCreateOptionsMenu(menu);
     }
 }

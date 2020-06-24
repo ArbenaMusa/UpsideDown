@@ -246,6 +246,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/mjeshter"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
