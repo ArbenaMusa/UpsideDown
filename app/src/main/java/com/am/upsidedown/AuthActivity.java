@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.am.upsidedown.auth.LogInFragment;
 import com.am.upsidedown.auth.SignUpFragment;
-import com.am.upsidedown.utils.ViewPagerAdapter;
+import com.am.upsidedown.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 

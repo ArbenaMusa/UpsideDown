@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity{
     private Spinner role, occupation;
     private Button btnRegisterUser;
     private Button btnPick;
-    private String email, password;
+    private String name, surname, email;
     private String userRole, userJob;
 
     private FirebaseAuth mAuth;
@@ -85,13 +85,15 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userId = mAuth.getCurrentUser().getUid();
+                name = txtName.getText().toString();
+                surname = txtSurname.getText().toString();
                 DocumentReference documentReference = firestore.collection("users").document(userId);
                 Map<String, Object> user = new HashMap<>();
                 if (getIntent().getExtras() != null) {
                     email = getIntent().getExtras().getString("email");
                 }
-                user.put("name", txtName.getText().toString());
-                user.put("surname", txtSurname.getText().toString());
+                user.put("name", name);
+                user.put("surname", surname);
                 user.put("email", email);
                 user.put("role", userRole);
                 if (userRole == "Workman") {

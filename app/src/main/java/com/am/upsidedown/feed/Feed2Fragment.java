@@ -7,66 +7,56 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.SearchView;
 
 import com.am.upsidedown.R;
+import com.am.upsidedown.adapters.RecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Feed2Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Feed2Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    RecyclerView recyclerView;
+    RecyclerAdapter recyclerAdapter;
 
-    public Feed2Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Feed2Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Feed2Fragment newInstance(String param1, String param2) {
-        Feed2Fragment fragment = new Feed2Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    List<String> moviesList;
+    DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.feed2_fragment, container, false);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+
+
+        moviesList = new ArrayList<>();
+        moviesList.add("Captain Marvel");
+        moviesList.add("Avengers: Endgame");
+        moviesList.add("Spider-Man: Far From Home");
+
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerAdapter = new RecyclerAdapter(moviesList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(recyclerAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.feed2_fragment, container, false);
+        return view;
     }
 
     @Override
@@ -74,12 +64,31 @@ public class Feed2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         final NavController navController = Navigation.findNavController(view);
-        Button pite = view.findViewById(R.id.pite2);
-        pite.setOnClickListener(new View.OnClickListener() {
+//        Button pite = view.findViewById(R.id.pite2);
+//        pite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navController.navigate(R.id.action_feed2Fragment_to_feed1Fragment);
+//            }
+//        });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getActivity().getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_feed2Fragment_to_feed1Fragment);
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recyclerAdapter.getFilter().filter(newText);
+                return false;
             }
         });
+        return getActivity().onCreateOptionsMenu(menu);
     }
 }

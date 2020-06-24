@@ -1,4 +1,4 @@
-package com.am.upsidedown.utils;
+package com.am.upsidedown.adapters;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
