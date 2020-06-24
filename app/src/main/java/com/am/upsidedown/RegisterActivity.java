@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     public static final int CAMERA_REQUEST_CODE = 102;
     private ImageView selectedImage;
     private String currentPhotoPath;
-    private EditText txtName, txtSurname;
+    private EditText txtName, txtSurname, txtPhoneNumber;
     private Spinner role, occupation;
     private Button btnRegisterUser;
     private Button btnPick, btnTake;
@@ -84,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         selectedImage = findViewById(R.id.image);
         txtName = findViewById(R.id.txtname);
         txtSurname = findViewById(R.id.txtsurname);
+        txtPhoneNumber = findViewById(R.id.txtphonenumber);
         role = findViewById(R.id.spinner1);
         occupation = findViewById(R.id.spinner2);
         btnRegisterUser = findViewById(R.id.btnregisterUser);
@@ -168,6 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     public void addItemsOnSpinner2() {
         List<String> list = new ArrayList<String>();
+        list.add("None");
         list.add("Electrician");
         list.add("Plumber");
         list.add("Painter");

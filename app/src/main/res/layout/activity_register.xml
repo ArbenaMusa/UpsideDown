@@ -56,11 +56,23 @@
         android:hint="@string/surname"
         android:inputType="text" />
 
+    <EditText
+        android:id="@+id/txtphonenumber"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtsurname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:autofillHints=""
+        android:background="#bdc3c7"
+        android:hint="Phone number"
+        android:inputType="text" />
+
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtsurname"
+        android:layout_below="@id/txtphonenumber"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:entries="@array/role"
