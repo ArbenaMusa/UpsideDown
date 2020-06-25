@@ -22,13 +22,13 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
 
     private static final String TAG = "RecyclerAdapter";
-    List<String> moviesList;
-    List<String> moviesListAll;
+    List<String> workmanList;
+    List<String> workmanListAll;
 
     public RecyclerAdapter(List<String> moviesList) {
-        this.moviesList = moviesList;
-        moviesListAll = new ArrayList<>();
-        moviesListAll.addAll(moviesList);
+        this.workmanList = moviesList;
+        workmanListAll = new ArrayList<>();
+        workmanListAll.addAll(moviesList);
     }
 
     @NonNull
@@ -43,12 +43,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.rowCountTextView.setText(String.valueOf(position));
-        holder.textView.setText(moviesList.get(position));
+        holder.textView.setText(workmanList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return workmanList.size();
     }
 
     @Override
@@ -66,9 +66,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             List<String> filteredList = new ArrayList<>();
 
             if (charSequence == null || charSequence.length() == 0) {
-                filteredList.addAll(moviesListAll);
+                filteredList.addAll(workmanListAll);
             } else {
-                for (String movie: moviesListAll) {
+                for (String movie: workmanListAll) {
                     if (movie.toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         filteredList.add(movie);
                     }
@@ -83,8 +83,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //Automatic on UI thread
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            moviesList.clear();
-            moviesList.addAll((Collection<? extends String>) filterResults.values);
+            workmanList.clear();
+            workmanList.addAll((Collection<? extends String>) filterResults.values);
             notifyDataSetChanged();
         }
     };
@@ -111,7 +111,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), moviesList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), workmanList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
         }
     }
 }

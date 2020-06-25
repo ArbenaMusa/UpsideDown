@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +33,12 @@ import android.widget.Toast;
 import com.am.upsidedown.FeedActivity;
 import com.am.upsidedown.R;
 import com.am.upsidedown.adapters.RecyclerAdapter;
+import com.am.upsidedown.models.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +51,10 @@ public class Feed2Fragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
 
-    List<String> moviesList;
+    final List<String> workmanList = new ArrayList<>();
     String title;
+
+    private FirebaseFirestore firestore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,55 +70,67 @@ public class Feed2Fragment extends Fragment {
         title = "Found " + searchedJob + "s";
 
         Toolbar toolbar = view.findViewById(R.id.search_toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AppCompatActivity)getActivity()).finish();
+                ((AppCompatActivity) getActivity()).finish();
             }
         });
 
-        moviesList = new ArrayList<>();
-        moviesList.add("Captain Marvel");
-        moviesList.add("Avengers: Endgame");
-        moviesList.add("Spider-Man: Far From Home");
+        firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("users").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documentSnapshots) {
+                        DocumentSnapshot documents = documentSnapshots.getDocuments().get(4);
+                        if (documentSnapshots.isEmpty()) {
+                            Log.v("on success: ", "LIST EMPTY");
+                            return;
+                        } else {
+                            List<User> items = documentSnapshots.toObjects(User.class);
+                            for (int i = 0; i < items.size(); i++) {
+                                if (items.get(i).getRole().equals("Workman")) {
+                                    workmanList.add(items.get(i).getName());
+                                    Log.v("Name", items.get(i).getName());
+                                }
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.v("on failure", "deshtoi");
+                    }
+                });
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerAdapter = new RecyclerAdapter(moviesList);
+        recyclerAdapter = new RecyclerAdapter(workmanList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-        // Inflate the layout for this fragment
 
-
-        /**   imageCall.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        makePhoneCall();
-
-        }
-        });**/
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         final NavController navController = Navigation.findNavController(view);
-//        Button pite = view.findViewById(R.id.pite2);
-//        pite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_feed2Fragment_to_feed1Fragment);
-//            }
-//        });
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
@@ -133,7 +154,6 @@ public class Feed2Fragment extends Fragment {
     /**
      * This method start the action of phone call
      */
-
     private void makePhoneCall() {
         String number = "045656448";
         if (number.trim().length() > 0) {
@@ -142,13 +162,14 @@ public class Feed2Fragment extends Fragment {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
             } else {
-                String dial = "tel:" + number ;
+                String dial = "tel:" + number;
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         } else {
             Toast.makeText(getActivity(), "Enter Phone Number", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CALL) {

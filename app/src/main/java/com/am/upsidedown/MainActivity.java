@@ -107,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                         .setLayout(R.layout.dialog_preference);
                 preferencesDialog.show();
                 return true;
+            case R.id.side_menu_history:
+                startActivity(new Intent(MainActivity.this, AsyncActivity.class));
+                return true;
             case R.id.side_menu_logout:
                 Toast.makeText(getApplicationContext(), R.string.logout, Toast.LENGTH_LONG).show();
                 mAuth.signOut();

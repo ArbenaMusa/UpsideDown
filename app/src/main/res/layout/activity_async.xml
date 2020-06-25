@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c1c1c1"
+    android:backgroundTint="@color/colorGrey"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".AsyncActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="You wanna know our story?!"
+        android:textColor="@color/colorWhite"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/asyncTask"
+        android:layout_width="@dimen/log_button_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_button"
+        android:text="Get the idea"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+    <TextView
+        android:id="@+id/story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        android:padding="30dp"/>
+</LinearLayout>
