@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.am.upsidedown.R;
 
@@ -28,8 +30,9 @@ public class Feed1Fragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView feedDescriptionImage;
+    private TextView headingDescription;
+    private TextView infoDescription;
 
     public Feed1Fragment() {
         // Required empty public constructor
@@ -57,8 +60,8 @@ public class Feed1Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+          //  mParam1 = getArguments().getString(ARG_PARAM1);
+           // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -67,6 +70,8 @@ public class Feed1Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.feed1_fragment, container, false);
+
+
     }
 
     @Override
