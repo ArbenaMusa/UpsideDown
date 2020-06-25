@@ -1,5 +1,9 @@
 package com.am.upsidedown.feed;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,6 +26,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.am.upsidedown.FeedActivity;
 import com.am.upsidedown.R;
@@ -29,6 +37,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Feed2Fragment extends Fragment {
+
+    private static final int REQUEST_CALL = 1;
+    private ImageButton imageCall;
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
@@ -44,6 +55,8 @@ public class Feed2Fragment extends Fragment {
 
         FeedActivity activity = (FeedActivity) getActivity();
         String searchedJob = activity.getSearchedJob();
+
+        imageCall = view.findViewById(R.id.btn_call);
 
         title = "Found " + searchedJob + "s";
 
@@ -72,6 +85,16 @@ public class Feed2Fragment extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
         // Inflate the layout for this fragment
+
+
+        /**   imageCall.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        makePhoneCall();
+
+        }
+        });**/
         return view;
     }
 
@@ -105,5 +128,35 @@ public class Feed2Fragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    /**
+     * This method start the action of phone call
+     */
+
+    private void makePhoneCall() {
+        String number = "045656448";
+        if (number.trim().length() > 0) {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            } else {
+                String dial = "tel:" + number ;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+        } else {
+            Toast.makeText(getActivity(), "Enter Phone Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(getActivity(), "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

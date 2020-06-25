@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,6 +95,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         ImageView imageView;
         TextView textView, rowCountTextView;
+        ImageButton imageCall;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +103,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             imageView = itemView.findViewById(R.id.imageView);
             textView = itemView.findViewById(R.id.textView);
             rowCountTextView = itemView.findViewById(R.id.rowCountTextView);
+            imageCall = itemView.findViewById(R.id.btn_call);
 
             itemView.setOnClickListener(this);
 
