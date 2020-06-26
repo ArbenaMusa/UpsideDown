@@ -117,4 +117,6 @@
     <string name="pick_an_image">Pick an image</string>
     <string name="photo">Photo</string>
     <string name="app_history">App history</string>
+    <string name="activity_log">Activity log</string>
+    <string name="get_app_history">Get app history</string>
 </resources>

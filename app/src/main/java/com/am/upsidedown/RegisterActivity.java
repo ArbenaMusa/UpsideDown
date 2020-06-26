@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.am.upsidedown.models.AppUserModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private StorageReference storageReference;
+    private DatabaseHandler internalDb;
     private String userId;
 
     private static final String TAG = "RegisterActivity";
@@ -92,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        internalDb = new DatabaseHandler(this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
         btnPick.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "User profile created for " + userId);
+                            internalDb.addAppUser(new AppUserModel(name, surname, email));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -151,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this, "All fields are required!", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 

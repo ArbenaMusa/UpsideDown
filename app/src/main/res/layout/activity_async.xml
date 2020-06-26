@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="You wanna know our story?!"
+        android:text="@string/activity_log"
         android:textColor="@color/colorWhite"
         android:textSize="25dp" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/rounded_button"
-        android:text="Get the idea"
+        android:text="@string/get_app_history"
         android:textColor="@color/colorWhite"
         android:textSize="20sp" />
 
@@ -34,11 +34,15 @@
         android:layout_width="300dp"
         android:layout_height="300dp" />
 
-    <TextView
-        android:id="@+id/story"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        android:padding="30dp"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:padding="30dp"/>
+    </ScrollView>
 </LinearLayout>

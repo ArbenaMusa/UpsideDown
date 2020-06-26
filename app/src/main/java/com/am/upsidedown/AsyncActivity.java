@@ -7,15 +7,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.am.upsidedown.models.AppUserModel;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class AsyncActivity extends AppCompatActivity {
     URL ImageUrl = null;
@@ -24,11 +28,13 @@ public class AsyncActivity extends AppCompatActivity {
     ImageView imageView = null;
     TextView story;
     ProgressDialog p;
+    DatabaseHandler internalDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async);
+        internalDb = new DatabaseHandler(this);
         Button button = findViewById(R.id.asyncTask);
         imageView = findViewById(R.id.image);
         story = findViewById(R.id.story);
@@ -46,7 +52,7 @@ public class AsyncActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             p = new ProgressDialog(AsyncActivity.this);
-            p.setMessage("Please wait...Until we get the best written version of our story!");
+            p.setMessage("Please wait...Until we get you activity log!");
             p.setIndeterminate(false);
             p.setCancelable(false);
             p.show();
@@ -63,7 +69,7 @@ public class AsyncActivity extends AppCompatActivity {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inPreferredConfig = Bitmap.Config.RGB_565;
                 bmImg = BitmapFactory.decodeStream(is, null, options);
-                Thread.sleep(7000);
+                Thread.sleep(5000);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -76,7 +82,15 @@ public class AsyncActivity extends AppCompatActivity {
             if (imageView != null) {
                 p.hide();
                 imageView.setImageBitmap(bitmap);
-                story.setText("Because of the pandemic .... bllah bllah bllah");
+                String log = "";
+
+                List<AppUserModel> appUsersList = internalDb.getAllAppUsers();
+
+                for (AppUserModel au : appUsersList) {
+                    log += au.getId() + ". " + "\nName: " + au.getName() + "\nSurname: " +
+                            au.getSurname() + "\nEmail: " + au.getEmail() + "\n";
+                }
+                story.setText("App users registered from this phone: \n" + log);
             } else {
                 p.show();
             }
