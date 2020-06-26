@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView name, email;
     private String userId;
     private String extra;
+    private int extra2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,39 +144,53 @@ public class MainActivity extends AppCompatActivity {
     private boolean getSelectedPage(int id) {
         Intent feedActivity = new Intent(MainActivity.this, FeedActivity.class);
         switch (id) {
-            case R.id.nav_electritian:
-                extra = "Electritian";
+            case R.id.nav_electrician:
+                extra = "Electrician";
+                extra2 = 0;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.plumber:
                 extra = "Plumber";
+                extra2 = 1;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.nav_painter:
                 extra = "Painter";
+                extra2 = 2;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.nav_housekeeper:
                 extra = "Housekeeper";
+                extra2 = 3;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.nav_gardener:
                 extra = "Gardener";
+                extra2 = 4;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.nav_chimneysweep:
                 extra = "Chimneysweep";
+                extra2 = 5;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.nav_mechanic:
-                extra = "mechanic";
+                extra = "Mechanic";
+                extra2 = 6;
                 feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
                 break;
             case R.id.map:

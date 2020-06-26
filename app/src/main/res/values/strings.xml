@@ -83,33 +83,6 @@
     <string name="feedback_text">Share your opinion about us...</string>
     <string name="send_feedback">Send feedback</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="infoDescription1">Electricians are more than just the modern superheroes of electricity.
-                                   In between power outages, they constantly work on other projects such as rewiring equipment or fixtures,
-                                   inspecting electrical components for safety, installing wiring and lighting,
-                                   and troubleshooting electrical problems.</string>
-    <string name="infoDescription2">Plumbers install, maintain and repair residential and commercial plumbing systems that supply
-                                    the property with water and gas and carry away waste. Heating and cooling (HVAC), waste removal,
-                                    and potable water delivery are among the most common uses for plumbing,
-                                    but it is not limited to these applications.</string>
-    <string name="infoDescription3">A painter applies paint and other decorative finishes to interior and exterior surfaces of buildings
-                                    and other structures. Some of the main duties of a painter are to: Prepare surfaces to be painted
-                                   (includes scraping, removal of wallpaper, etc.). Determine what materials will be needed.</string>
-    <string name="infoDescription4">Here are the general duties of a housekeeper: Light cleaning in the living areas. This includes dusting,
-                                    vacuuming, sweeping and mopping the floors in all rooms. Cleaning the bathrooms, including mirrors,
-                                    toilets, showers and baths.</string>
-    <string name="infoDescription5">The gardener is the person who has the skill to maintain the gardens design. The gardeners labor
-                                    during the year include planting flowers and other plants, weeding, pruning, grafting, deadheading,
-                                    mixing and preparation of insecticides and other products for pest control, and tending garden compost.</string>
-    <string name="infoDescription6">The chimney sweep sweeps and cleans chimneys, smoke ducts, flue pipes and fireplaces in order to prevent
-                                     soot fires and gas emissions. The chimney sweep also has special skills regarding fire prevention work and
-                                     they work closely with the fire department.</string>
-    <string name="infoDescription7">A mechanic works on automobiles, trucks, and related transportation and material-moving vehicles.
-                                    Some mechanics perform general maintenance and repairs, while others may specialize in tires, brakes, engines,
-                                    or on-board computers.</string>
-    <string name="infoDescription8">Mjeshter...</string>
-
     <string name="register">Register</string>
     <string name="user_profile_image">User Profile Image</string>
     <string name="x">X</string>
@@ -119,4 +92,6 @@
     <string name="app_history">App history</string>
     <string name="activity_log">Activity log</string>
     <string name="get_app_history">Get app history</string>
+    <string name="feed_description_image">Feed Description Image</string>
+    <string name="search_for_help">Search for help</string>
 </resources>

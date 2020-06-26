@@ -15,67 +15,44 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.am.upsidedown.FeedActivity;
 import com.am.upsidedown.R;
+import com.am.upsidedown.models.Occupation;
+
+import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Feed1Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Feed1Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private ImageView feedDescriptionImage;
-    private TextView headingDescription;
-    private TextView infoDescription;
-
-    public Feed1Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Feed1Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Feed1Fragment newInstance(String param1, String param2) {
-        Feed1Fragment fragment = new Feed1Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-          //  mParam1 = getArguments().getString(ARG_PARAM1);
-           // mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private String searchedJob;
+    private int jobIndex;
+    private List<Occupation> occupationList;
+    private TextView jobName, jobDescription;
+    private ImageView jobImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.feed1_fragment, container, false);
 
+        View view = inflater.inflate(R.layout.feed1_fragment, container, false);
 
+        jobImage = view.findViewById(R.id.feed_description_image);
+        jobName = view.findViewById(R.id.job_name);
+        jobDescription = view.findViewById(R.id.job_description);
+
+        FeedActivity activity = (FeedActivity) getActivity();
+        searchedJob = activity.getSearchedJob();
+        jobIndex = activity.getJobIndex();
+        occupationList = activity.getOccupationsList();
+
+        setJobImage(searchedJob);
+        jobName.setText(occupationList.get(jobIndex).getJobName());
+        jobDescription.setText(occupationList.get(jobIndex).getJobDescription());
+
+        return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         final NavController navController = Navigation.findNavController(view);
@@ -86,5 +63,33 @@ public class Feed1Fragment extends Fragment {
                 navController.navigate(R.id.action_feed1Fragment_to_feed2Fragment);
             }
         });
+    }
+
+    private void setJobImage(String searchedJob){
+        switch(searchedJob){
+            case "Electrician":
+                jobImage.setImageResource(R.drawable.electrician_icon);
+                break;
+            case "Plumber":
+                jobImage.setImageResource(R.drawable.plumber_icon);
+                break;
+            case "Painter":
+                jobImage.setImageResource(R.drawable.painter_icon);
+                break;
+            case "Housekeeper":
+                jobImage.setImageResource(R.drawable.housekeeper_icon);
+                break;
+            case "Gardener":
+                jobImage.setImageResource(R.drawable.gardener_icon);
+                break;
+            case "Chimneysweep":
+                jobImage.setImageResource(R.drawable.chimneysweep_icon);
+                break;
+            case "Mechanic":
+                jobImage.setImageResource(R.drawable.mechanic_icon);
+                break;
+            default:
+                jobImage.setImageResource(R.drawable.user);
+        }
     }
 }

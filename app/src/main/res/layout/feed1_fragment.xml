@@ -7,54 +7,51 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/feed_description_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/electrician_icon"
-        android:contentDescription="Feed Description Image"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/heading_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/feed_description_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:text="@string/electrician" />
+        <ImageView
+            android:id="@+id/feed_description_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:contentDescription="@string/feed_description_image"
+            android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/info_description"
+            android:id="@+id/job_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/heading_description"
+            android:layout_below="@+id/feed_description_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/job_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/job_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:padding="35dp"
-            android:textSize="16sp"
-            android:text="@string/infoDescription1"
             android:textAlignment="center"
-            />
-    <Button
-        android:id="@+id/pite1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/info_description"
-        android:background="#0a1c20"
-        android:textColor="@android:color/white"
-        android:text="Search for help"/>
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/pite1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/job_description"
+            android:layout_marginTop="30dp"
+            android:background="#0a1c20"
+            android:text="@string/search_for_help"
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 

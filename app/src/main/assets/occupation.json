@@ -1,0 +1,36 @@
+{
+  "occupations": [
+    {
+      "jobName": "Electritian",
+      "jobDescription": "Electricians are more than just the modern superheroes of electricity.\nIn between power outages, they constantly work on other projects such as rewiring equipment or fixtures,\ninspecting electrical components for safety, installing wiring and lighting,\nand troubleshooting electrical problems."
+    },
+    {
+      "jobName": "Plumber",
+      "jobDescription": "Plumbers install, maintain and repair residential and commercial plumbing systems that supply\nthe property with water and gas and carry away waste. Heating and cooling (HVAC), waste removal,\nand potable water delivery are among the most common uses for plumbing,\nbut it is not limited to these applications."
+    },
+    {
+      "jobName": "Painter",
+      "jobDescription": "A painter applies paint and other decorative finishes to interior and exterior surfaces of buildings\nand other structures. Some of the main duties of a painter are to: Prepare surfaces to be painted\n(includes scraping, removal of wallpaper, etc.). Determine what materials will be needed."
+    },
+    {
+      "jobName": "Housekeeper",
+      "jobDescription": "Here are the general duties of a housekeeper: Light cleaning in the living areas. This includes dusting,\nvacuuming, sweeping and mopping the floors in all rooms. Cleaning the bathrooms, including mirrors,\ntoilets, showers and baths."
+    },
+    {
+      "jobName": "Gardener",
+      "jobDescription": "The gardener is the person who has the skill to maintain the gardens design. The gardeners labor\nduring the year include planting flowers and other plants, weeding, pruning, grafting, deadheading,\nmixing and preparation of insecticides and other products for pest control, and tending garden compost."
+    },
+    {
+      "jobName": "Chimneysweep",
+      "jobDescription": "The chimney sweep sweeps and cleans chimneys, smoke ducts, flue pipes and fireplaces in order to prevent\nsoot fires and gas emissions. The chimney sweep also has special skills regarding fire prevention work and\nthey work closely with the fire department."
+    },
+    {
+      "jobName": "Mechanic",
+      "jobDescription": "A mechanic works on automobiles, trucks, and related transportation and material-moving vehicles.\nSome mechanics perform general maintenance and repairs, while others may specialize in tires, brakes, engines,\nor on-board computers."
+    },
+    {
+      "jobName": "Mjeshter",
+      "jobDescription": "..."
+    }
+  ]
+}

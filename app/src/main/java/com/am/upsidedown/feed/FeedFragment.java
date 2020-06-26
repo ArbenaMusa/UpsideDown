@@ -41,24 +41,25 @@ public class FeedFragment extends Fragment {
         mechanicCard = view.findViewById(R.id.mechanic);
         mjeshterCard = view.findViewById(R.id.mjeshter);
 
-        cardViewOnClickListener(electritianCard, "Electritian");
-        cardViewOnClickListener(plumberCard, "Plumber");
-        cardViewOnClickListener(painterCard, "Painter");
-        cardViewOnClickListener(housekeeperCard, "Housekeeper");
-        cardViewOnClickListener(gardenerCard, "Gardener");
-        cardViewOnClickListener(chimneysweepCard, "Chimneysweep");
-        cardViewOnClickListener(mechanicCard, "Mechanic");
-        cardViewOnClickListener(mjeshterCard, "Mjeshter");
+        cardViewOnClickListener(electritianCard, "Electrician", 0);
+        cardViewOnClickListener(plumberCard, "Plumber", 1);
+        cardViewOnClickListener(painterCard, "Painter", 2);
+        cardViewOnClickListener(housekeeperCard, "Housekeeper", 3);
+        cardViewOnClickListener(gardenerCard, "Gardener", 4);
+        cardViewOnClickListener(chimneysweepCard, "Chimneysweep", 5);
+        cardViewOnClickListener(mechanicCard, "Mechanic", 6);
+        cardViewOnClickListener(mjeshterCard, "Mjeshter", 7);
 
         return view;
     }
 
-    public void cardViewOnClickListener(CardView cardView, final String extra){
+    public void cardViewOnClickListener(CardView cardView, final String extra1, final int extra2) {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent feedActivity = new Intent(getActivity(), FeedActivity.class);
-                feedActivity.putExtra("searched_job", extra);
+                feedActivity.putExtra("searched_job", extra1);
+                feedActivity.putExtra("job_index", extra2);
                 startActivity(feedActivity);
             }
         });

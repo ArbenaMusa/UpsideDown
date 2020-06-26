@@ -5,7 +5,7 @@
     <item android:title="@string/item_group1">
         <menu>
             <item
-                android:id="@+id/nav_electritian"
+                android:id="@+id/nav_electrician"
                 android:icon="@drawable/electrician"
                 android:title="@string/electrician" />
             <item
