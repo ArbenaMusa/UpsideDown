@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
         internalDb = new DatabaseHandler(this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        btnPick.setOnClickListener(new View.OnClickListener() {
+       btnPick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -332,11 +332,12 @@ public class RegisterActivity extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "net.smallacademy.android.fileprovider",
+                        "com.am.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
         }
+        //startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
     }
 }
