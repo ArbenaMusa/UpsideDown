@@ -1,4 +1,4 @@
-package com.am.upsidedown;
+package com.am.upsidedown.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.am.upsidedown.models.AppUser;
-import com.am.upsidedown.models.AppUserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "internalDbr";
+    private static final String DATABASE_NAME = "internalDb";
     private static final String TABLE_APP_USERS = "appUsers";
 
     public DatabaseHandler(@Nullable Context context) {
@@ -31,10 +30,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String strQuery = "CREATE TABLE " + TABLE_APP_USERS + " (" +
-                AppUser.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                AppUser.Name + " TEXT NOT NULL," +
-                AppUser.Surname + " TEXT NOT NULL," +
-                AppUser.Email + " TEXT NOT NULL" +
+                DatabaseUser.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                DatabaseUser.Name + " TEXT NOT NULL," +
+                DatabaseUser.Surname + " TEXT NOT NULL," +
+                DatabaseUser.Email + " TEXT NOT NULL" +
                 ")";
 
         db.execSQL(strQuery);
@@ -57,15 +56,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * This method adds a new app user on internal database.
-     * @param appUserModel
+     * @param appUser
      */
-    void addAppUser(AppUserModel appUserModel) {
+    public void addAppUser(AppUser appUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(AppUser.Name, appUserModel.getName());
-        values.put(AppUser.Surname, appUserModel.getSurname());
-        values.put(AppUser.Email, appUserModel.getEmail());
+        values.put(DatabaseUser.Name, appUser.getName());
+        values.put(DatabaseUser.Surname, appUser.getSurname());
+        values.put(DatabaseUser.Email, appUser.getEmail());
 
         db.insert(TABLE_APP_USERS, null, values);
         db.close();
@@ -76,27 +75,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @param id
      * @return
      */
-    AppUserModel getAppUser(int id) {
+    public AppUser getAppUser(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_APP_USERS, new String[] { AppUser.ID,
-                        AppUser.Name, AppUser.Surname, AppUser.Email}, AppUser.ID + "=?",
+        Cursor cursor = db.query(TABLE_APP_USERS, new String[] { DatabaseUser.ID,
+                        DatabaseUser.Name, DatabaseUser.Surname, DatabaseUser.Email}, DatabaseUser.ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        AppUserModel appUserModel = new AppUserModel(Integer.parseInt(cursor.getString(0)),
+        AppUser appUser = new AppUser(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2), cursor.getString(3));
 
-        return appUserModel;
+        return appUser;
     }
 
     /**
      * This method get all app user from the internal database.
      * @return
      */
-    public List<AppUserModel> getAllAppUsers() {
-        List<AppUserModel> appUsersList = new ArrayList<AppUserModel>();
+    public List<AppUser> getAllAppUsers() {
+        List<AppUser> appUsersList = new ArrayList<AppUser>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_APP_USERS;
 
@@ -105,13 +104,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                AppUserModel appUserModel = new AppUserModel();
-                appUserModel.setId(Integer.parseInt(cursor.getString(0)));
-                appUserModel.setName(cursor.getString(1));
-                appUserModel.setSurname(cursor.getString(2));
-                appUserModel.setEmail(cursor.getString(3));
+                AppUser appUser = new AppUser();
+                appUser.setId(Integer.parseInt(cursor.getString(0)));
+                appUser.setName(cursor.getString(1));
+                appUser.setSurname(cursor.getString(2));
+                appUser.setEmail(cursor.getString(3));
 
-                appUsersList.add(appUserModel);
+                appUsersList.add(appUser);
             } while (cursor.moveToNext());
         }
 
@@ -120,29 +119,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * THis method updates a specific app user.
-     * @param appUserModel
+     * @param appUser
      * @return
      */
-    public int updateAppUser(AppUserModel appUserModel) {
+    public int updateAppUser(AppUser appUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(AppUser.Name, appUserModel.getName());
-        values.put(AppUser.Surname, appUserModel.getSurname());
-        values.put(AppUser.Email, appUserModel.getEmail());
+        values.put(DatabaseUser.Name, appUser.getName());
+        values.put(DatabaseUser.Surname, appUser.getSurname());
+        values.put(DatabaseUser.Email, appUser.getEmail());
 
-        return db.update(TABLE_APP_USERS, values, AppUser.ID + " = ?",
-                new String[] { String.valueOf(appUserModel.getId()) });
+        return db.update(TABLE_APP_USERS, values, DatabaseUser.ID + " = ?",
+                new String[] { String.valueOf(appUser.getId()) });
     }
 
     /**
      * THis method deletes a specific app user from internal database.
-     * @param appUserModel
+     * @param appUser
      */
-    public void deleteAppUser(AppUserModel appUserModel) {
+    public void deleteAppUser(AppUser appUser) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_APP_USERS, AppUser.ID + " = ?",
-                new String[] { String.valueOf(appUserModel.getId()) });
+        db.delete(TABLE_APP_USERS, DatabaseUser.ID + " = ?",
+                new String[] { String.valueOf(appUser.getId()) });
         db.close();
     }
 

@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 
 import android.webkit.MimeTypeMap;
-import android.widget.Adapter;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +29,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.am.upsidedown.models.AppUserModel;
+import com.am.upsidedown.database.DatabaseHandler;
+import com.am.upsidedown.models.AppUser;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -138,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "User profile created for " + userId);
-                            internalDb.addAppUser(new AppUserModel(name, surname, email));
+                            internalDb.addAppUser(new AppUser(name, surname, email));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

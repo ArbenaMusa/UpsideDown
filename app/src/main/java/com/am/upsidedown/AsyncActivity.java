@@ -7,13 +7,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.am.upsidedown.models.AppUserModel;
+import com.am.upsidedown.database.DatabaseHandler;
+import com.am.upsidedown.models.AppUser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,9 +84,9 @@ public class AsyncActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
                 String log = "";
 
-                List<AppUserModel> appUsersList = internalDb.getAllAppUsers();
+                List<AppUser> appUsersList = internalDb.getAllAppUsers();
 
-                for (AppUserModel au : appUsersList) {
+                for (AppUser au : appUsersList) {
                     log += au.getId() + ". " + "\nName: " + au.getName() + "\nSurname: " +
                             au.getSurname() + "\nEmail: " + au.getEmail() + "\n";
                 }
