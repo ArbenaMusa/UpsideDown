@@ -8,13 +8,23 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -49,12 +59,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class RegisterActivity extends AppCompatActivity {
 
+    Uri picUri;
+
+    private ArrayList<String> permissionsToRequest;
+    private ArrayList<String> permissionsRejected = new ArrayList<>();
+    private ArrayList<String> permissions = new ArrayList<>();
+
+    private final static int ALL_PERMISSIONS_RESULT = 107;
+    private final static int IMAGE_RESULT = 200;
+
     private static final int GALLERY_REQUEST_CODE = 123;
-    public static final int CAMERA_PERM_CODE = 101;
-    public static final int CAMERA_REQUEST_CODE = 102;
-    private ImageView selectedImage;
+
+    private ImageView takenImage;
     private String currentPhotoPath;
     private EditText txtName, txtSurname, txtPhoneNumber;
     private Spinner role, occupation;
@@ -78,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        selectedImage = findViewById(R.id.image);
+        takenImage = findViewById(R.id.image);
         txtName = findViewById(R.id.txtname);
         txtSurname = findViewById(R.id.txtsurname);
         txtPhoneNumber = findViewById(R.id.txtphonenumber);
@@ -109,7 +132,9 @@ public class RegisterActivity extends AppCompatActivity {
         btnTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                askCameraPermissions();
+
+                 startActivityForResult(getPickImageChooserIntent(), IMAGE_RESULT);
+
             }
         });
 
@@ -161,6 +186,215 @@ public class RegisterActivity extends AppCompatActivity {
         addItemsOnSpinner2();
 
         addListenerOnSpinnerItemSelection();
+
+        permissions.add(CAMERA);
+        permissions.add(WRITE_EXTERNAL_STORAGE);
+        permissions.add(READ_EXTERNAL_STORAGE);
+        permissionsToRequest = findUnAskedPermissions(permissions);
+
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+
+            if (permissionsToRequest.size() > 0)
+                requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
+        }
+
+    }
+
+    public Intent getPickImageChooserIntent() {
+
+        Uri outputFileUri = getCaptureImageOutputUri();
+
+        List<Intent> allIntents = new ArrayList<>();
+        PackageManager packageManager = getPackageManager();
+
+        Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
+        for (ResolveInfo res : listCam) {
+            Intent intent = new Intent(captureIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(res.activityInfo.packageName);
+            if (outputFileUri != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+            }
+            allIntents.add(intent);
+        }
+
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        List<ResolveInfo> listGallery = packageManager.queryIntentActivities(galleryIntent, 0);
+        for (ResolveInfo res : listGallery) {
+            Intent intent = new Intent(galleryIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(res.activityInfo.packageName);
+            allIntents.add(intent);
+        }
+
+        Intent mainIntent = allIntents.get(allIntents.size() - 1);
+        for (Intent intent : allIntents) {
+            if (intent.getComponent().getClassName().equals("com.android.documentsui.DocumentsActivity")) {
+                mainIntent = intent;
+                break;
+            }
+        }
+        allIntents.remove(mainIntent);
+
+        Intent chooserIntent = Intent.createChooser(mainIntent, "Select source");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, allIntents.toArray(new Parcelable[allIntents.size()]));
+
+        return chooserIntent;
+    }
+
+
+    private Uri getCaptureImageOutputUri() {
+        Uri outputFileUri = null;
+        File getImage = getExternalFilesDir("");
+        if (getImage != null) {
+            outputFileUri = Uri.fromFile(new File(getImage.getPath(), "profile.png"));
+        }
+        return outputFileUri;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                uri = data.getData();
+               String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+               filePath = "JPEG_" + timeStamp + "." + getFilExt(uri);
+               // String filePath = getImageFilePath(data);
+                Log.d("tag", "onActivityResult: Gallery Image Uri:  " + filePath);
+                takenImage.setImageURI(uri);
+            }
+        }
+       if (resultCode == Activity.RESULT_OK) {
+
+          if (requestCode == IMAGE_RESULT) {
+
+             String filePath = getImageFilePath(data);
+             if (filePath != null) {
+                   Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+                   takenImage.setImageBitmap(selectedImage);
+                }
+            }
+
+       }
+
+    }
+
+
+    private String getImageFromFilePath(Intent data) {
+        boolean isCamera = data == null || data.getData() == null;
+
+        if (isCamera) return getCaptureImageOutputUri().getPath();
+        else return getFilExt(data.getData());
+
+    }
+
+    public String getImageFilePath(Intent data) {
+        return getImageFromFilePath(data);
+    }
+
+  /**  private String getPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Audio.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+           **/
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable("pic_uri", picUri);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // get the file url
+        picUri = savedInstanceState.getParcelable("pic_uri");
+    }
+
+    private ArrayList<String> findUnAskedPermissions(ArrayList<String> wanted) {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (String perm : wanted) {
+            if (!hasPermission(perm)) {
+                result.add(perm);
+            }
+        }
+
+        return result;
+    }
+
+    private boolean hasPermission(String permission) {
+        if (canMakeSmores()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
+            }
+        }
+        return true;
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    private boolean canMakeSmores() {
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        switch (requestCode) {
+
+            case ALL_PERMISSIONS_RESULT:
+                for (String perms : permissionsToRequest) {
+                    if (!hasPermission(perms)) {
+                        permissionsRejected.add(perms);
+                    }
+                }
+
+                if (permissionsRejected.size() > 0) {
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (shouldShowRequestPermissionRationale(permissionsRejected.get(0))) {
+                            showMessageOKCancel("These permissions are mandatory for the application. Please allow access.",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+
+                                                requestPermissions(permissionsRejected.toArray(new String[permissionsRejected.size()]), ALL_PERMISSIONS_RESULT);
+                                            }
+                                        }
+                                    });
+                            return;
+                        }
+                    }
+
+                }
+
+                break;
+        }
 
     }
 
@@ -239,105 +473,29 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * onActivityResult will be called every time we choose an image from gallery
-     * add Uri to store image data
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                File f = new File(currentPhotoPath);
-                filePath = f.getName();
-                uri = Uri.fromFile(f);
-                selectedImage.setImageURI(Uri.fromFile(f));
-                Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
-
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-                mediaScanIntent.setData(uri);
-                this.sendBroadcast(mediaScanIntent);
-            }
-        }
-
-        if (requestCode == GALLERY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                uri = data.getData();
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                filePath = "JPEG_" + timeStamp + "." + getFileExt(uri);
-                Log.d("tag", "onActivityResult: Gallery Image Uri:  " + filePath);
-                selectedImage.setImageURI(uri);
-            }
-        }
-    }
-
-    private void askCameraPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
-        } else {
-            dispatchTakePictureIntent();
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == CAMERA_PERM_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                dispatchTakePictureIntent();
-            } else {
-                Toast.makeText(this, "Camera Permission is Required to Use camera.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private String getFileExt(Uri contentUri) {
+    private String getFilExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        //Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File storageDir =   getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName, /* prefix */
+                ".jpg", /* suffix */
+                storageDir    /* directory */
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
+        //Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
+    
 
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.am.android.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
-            }
-        }
-        //startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
-    }
 }
