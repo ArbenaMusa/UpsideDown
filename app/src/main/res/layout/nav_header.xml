@@ -33,7 +33,7 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/log_text_size"/>
+            android:textSize="@dimen/log_text_size" />
 
         <TextView
             android:id="@+id/currentEmail"

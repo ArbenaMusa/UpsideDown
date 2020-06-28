@@ -8,16 +8,16 @@
         <item name="colorAccent">@color/colorBlack</item>
     </style>
     <style name="large_title">
-        <item name="android:fontFamily">cursive</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:text">Cursive</item>
+        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:text">sans-serif</item>
     </style>
     <style name="small_title">
-        <item name="android:fontFamily">cursive</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:text">Cursive</item>
+        <item name="android:text">sans-serif</item>
     </style>
 
 </resources>

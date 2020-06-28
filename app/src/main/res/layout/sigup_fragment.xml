@@ -12,13 +12,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email">
+        android:hint="@string/email"
+        android:textColorHint="@color/colorGrey">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorGrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -26,13 +28,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:textColorHint="@color/colorGrey"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/colorGrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,8 +45,8 @@
         android:layout_width="@dimen/log_button_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button_dark"
         android:text="@string/sign_up"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorGrey"
         android:textSize="@dimen/log_text_size" />
 </LinearLayout>
