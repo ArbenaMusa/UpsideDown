@@ -10,14 +10,12 @@
     <style name="large_title">
         <item name="android:fontFamily">cursive</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">40sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:text">Cursive</item>
     </style>
     <style name="small_title">
         <item name="android:fontFamily">cursive</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:text">Cursive</item>
     </style>

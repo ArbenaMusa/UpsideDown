@@ -55,7 +55,8 @@
             android:layout_marginTop="@dimen/dialog_top_margin"
             android:text="@string/username"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="@dimen/log_text_size"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dialog_top_margin"
             android:text="@string/username"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/log_text_size"/>
     </LinearLayout>
 
 </LinearLayout>

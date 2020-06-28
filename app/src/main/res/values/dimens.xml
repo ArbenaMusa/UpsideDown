@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="large_title_top_padding">70sp</dimen>
+    <dimen name="large_title_size">40sp</dimen>
     <dimen name="small_title_top_padding">40sp</dimen>
+    <dimen name="small_title_size">25sp</dimen>
 
     <dimen name="main_log_layout_height">250dp</dimen>
     <dimen name="log_fragment_bottom_padding">30dp</dimen>
     <dimen name="log_fragment_padding">80sp</dimen>
     <dimen name="log_button_width">220dp</dimen>
-    <dimen name="log_text_size">22sp</dimen>
+    <dimen name="log_text_size">18sp</dimen>
 
     <dimen name="nav_header_padding">15dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>

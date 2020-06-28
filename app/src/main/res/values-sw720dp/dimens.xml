@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_title_top_padding">150sp</dimen>
+    <dimen name="large_title_size">90sp</dimen>
+    <dimen name="small_title_top_padding">40sp</dimen>
+    <dimen name="small_title_size">50sp</dimen>
+
+    <dimen name="main_log_layout_height">600dp</dimen>
+    <dimen name="log_fragment_bottom_padding">60dp</dimen>
+    <dimen name="log_fragment_padding">100sp</dimen>
+    <dimen name="log_button_width">420dp</dimen>
+    <dimen name="log_text_size">30sp</dimen>
+
+    <dimen name="nav_header_padding">30dp</dimen>
+    <dimen name="nav_header_vertical_spacing">20dp</dimen>
+    <dimen name="nav_header_height">300dp</dimen>
+
+    <dimen name="feed_padding">20dp</dimen>
+    <dimen name="feed_card_radius">15dp</dimen>
+    <dimen name="feed_margin">30dp</dimen>
+    <dimen name="feed_card_height">240dp</dimen>
+    <dimen name="feed_image">100dp</dimen>
+    <dimen name="feed_text_size">30sp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="async_title">60sp</dimen>
+    <dimen name="async_text">40sp</dimen>
+    <dimen name="async_image">500dp</dimen>
+    <dimen name="async_padding">50dp</dimen>
+
+    <dimen name="register_layout_padding">30dp</dimen>
+    <dimen name="register_image">400dp</dimen>
+    <dimen name="register_top_margin">70dp</dimen>
+    <dimen name="register_et_width">350dp</dimen>
+    <dimen name="register_btn_width">365dp</dimen>
+    <dimen name="register_btn_height">70dp</dimen>
+    <dimen name="register_margin_top">20dp</dimen>
+
+    <dimen name="dialog_width">650dp</dimen>
+    <dimen name="dialog_close">50dp</dimen>
+    <dimen name="dialog_top_margin">50dp</dimen>
+    <dimen name="dialog_image">160dp</dimen>
+    <dimen name="dialog_cardview">140dp</dimen>
+    <dimen name="dialog_border_radius">50dp</dimen>
+
+    <dimen name="feed1_padding">30dp</dimen>
+    <dimen name="feed1_image">350dp</dimen>
+    <dimen name="feed1_image_top_margin">100dp</dimen>
+    <dimen name="feed1_top_margin">60dp</dimen>
+    <dimen name="feed1_title_size">45sp</dimen>
+    <dimen name="feed1_text_size">30sp</dimen>
+    <dimen name="feed1_text_padding">35dp</dimen>
+
+    <dimen name="review_padding">50dp</dimen>
+    <dimen name="review_text_size">40sp</dimen>
+    <dimen name="review_margin_top">40sp</dimen>
+
+    <dimen name="feed_row_image">150dp</dimen>
+    <dimen name="feed_row_margin">30dp</dimen>
+
+</resources>

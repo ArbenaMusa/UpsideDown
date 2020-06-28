@@ -49,7 +49,8 @@
             android:layout_marginTop="@dimen/feed1_top_margin"
             android:background="#0a1c20"
             android:text="@string/search_for_help"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/feed1_text_size"/>
 
     </RelativeLayout>
 

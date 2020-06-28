@@ -17,6 +17,7 @@
         android:paddingTop="@dimen/small_title_top_padding"
         android:text="@string/app_name"
         android:textFontWeight="900"
+        android:textSize="@dimen/small_title_size"
         tools:targetApi="p" />
 
     <LinearLayout
@@ -31,13 +32,15 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/log_text_size"/>
 
         <TextView
             android:id="@+id/currentEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite" />
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/log_text_size" />
 
     </LinearLayout>
 
