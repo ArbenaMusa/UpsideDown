@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@drawable/popup"
-    android:padding="5dp">
+    android:padding="@dimen/register_layout_padding">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/register_image"
+        android:layout_height="@dimen/register_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:background="@drawable/register_icon"
         android:contentDescription="@string/user_profile_image"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
     <Button
         android:id="@+id/btnPickImage"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/register_btn_width"
+        android:layout_height="@dimen/register_btn_height"
         android:layout_below="@+id/image"
-        android:layout_marginTop="10dp"
-        android:text="@string/pick_an_image"/>
+        android:layout_marginTop="@dimen/register_margin_top"
+        android:text="@string/pick_an_image" />
+
     <Button
         android:id="@+id/btnTakeImage"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/register_btn_width"
+        android:layout_height="@dimen/register_btn_height"
         android:layout_below="@id/image"
+        android:layout_marginTop="@dimen/register_margin_top"
         android:layout_toEndOf="@+id/btnPickImage"
-        android:layout_marginTop="10dp"
-        android:text="@string/take_a_picture"/>
+        android:text="@string/take_a_picture" />
 
     <EditText
         android:id="@+id/txtname"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnPickImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:autofillHints=""
         android:background="#bdc3c7"
         android:hint="@string/name"
@@ -46,11 +48,11 @@
 
     <EditText
         android:id="@+id/txtsurname"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:autofillHints=""
         android:background="#bdc3c7"
         android:hint="@string/surname"
@@ -58,45 +60,45 @@
 
     <EditText
         android:id="@+id/txtphonenumber"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtsurname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:autofillHints=""
         android:background="#bdc3c7"
-        android:hint="Phone number"
-        android:inputType="text" />
+        android:hint="@string/phone_number"
+        android:inputType="text"
+        tools:ignore="TextFields" />
 
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtphonenumber"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:entries="@array/role"
-        android:prompt="@string/role_prompt"/>
+        android:prompt="@string/role_prompt" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:prompt="@string/jobPosition_prompt"/>
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:prompt="@string/jobPosition_prompt" />
 
     <Button
         android:id="@+id/btnregisterUser"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/register_et_width"
         android:layout_height="40dp"
         android:layout_below="@id/spinner2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/register_top_margin"
         android:background="@drawable/rounded_button"
         android:text="@string/register"
-        android:textColor="@color/colorGrey"
-        android:textSize="22sp" />
+        android:textColor="@color/colorGrey" />
 
 </RelativeLayout>

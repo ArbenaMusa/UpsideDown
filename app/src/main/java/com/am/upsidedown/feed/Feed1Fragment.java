@@ -56,7 +56,7 @@ public class Feed1Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         final NavController navController = Navigation.findNavController(view);
-        Button pite = view.findViewById(R.id.pite1);
+        Button pite = view.findViewById(R.id.search_help);
         pite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

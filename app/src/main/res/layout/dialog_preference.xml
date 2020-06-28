@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="350dp"
+    android:layout_width="@dimen/dialog_width"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@drawable/dialog_bg"
@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/dialog_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/dialog_close"
+        android:layout_height="@dimen/dialog_close"
         android:layout_gravity="end"
         android:background="@drawable/rounded_button"
         android:gravity="center"
@@ -22,22 +22,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/dialog_top_margin"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/shape_layout"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/dialog_image"
+            android:layout_height="@dimen/dialog_image"
             android:layout_gravity="center"
             android:background="@drawable/circular_bordershape">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="@dimen/dialog_cardview"
+                android:layout_height="@dimen/dialog_cardview"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                app:cardCornerRadius="50dp">
+                app:cardCornerRadius="@dimen/dialog_border_radius">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -52,8 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:text="User's name"
+            android:layout_marginTop="@dimen/dialog_top_margin"
+            android:text="@string/username"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
 
@@ -61,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:text="User's bio"
+            android:layout_marginTop="@dimen/dialog_top_margin"
+            android:text="@string/username"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 

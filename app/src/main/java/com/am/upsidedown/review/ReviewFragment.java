@@ -68,7 +68,7 @@ public class ReviewFragment extends Fragment {
         mRatingBar = view.findViewById(R.id.ratingBar);
         mRatingScale = view.findViewById(R.id.tvRatingScale);
         mFeedback = view.findViewById(R.id.etFeedback);
-        mSendFeedback = view.findViewById(R.id.btnSubmit);
+        mSendFeedback = view.findViewById(R.id.feedback_btn);
 
         selectRatingStars();
         sendFeedback();

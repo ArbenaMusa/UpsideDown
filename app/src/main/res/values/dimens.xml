@@ -7,12 +7,54 @@
     <dimen name="log_fragment_bottom_padding">30dp</dimen>
     <dimen name="log_fragment_padding">80sp</dimen>
     <dimen name="log_button_width">220dp</dimen>
+    <dimen name="log_text_size">22sp</dimen>
 
     <dimen name="nav_header_padding">15dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">180dp</dimen>
 
-    <dimen name="main_fragment_padding">10sp</dimen>
+    <dimen name="feed_padding">10dp</dimen>
+    <dimen name="feed_card_radius">15dp</dimen>
+    <dimen name="feed_margin">10dp</dimen>
+    <dimen name="feed_card_height">140dp</dimen>
+    <dimen name="feed_image">50dp</dimen>
+    <dimen name="feed_text_size">16sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="async_title">25sp</dimen>
+    <dimen name="async_text">20sp</dimen>
+    <dimen name="async_image">300dp</dimen>
+    <dimen name="async_padding">20dp</dimen>
+
+    <dimen name="register_layout_padding">10dp</dimen>
+    <dimen name="register_image">200dp</dimen>
+    <dimen name="register_top_margin">40dp</dimen>
+    <dimen name="register_et_width">300dp</dimen>
+    <dimen name="register_btn_width">200dp</dimen>
+    <dimen name="register_btn_height">40dp</dimen>
+    <dimen name="register_margin_top">10dp</dimen>
+
+    <dimen name="dialog_width">350dp</dimen>
+    <dimen name="dialog_close">30dp</dimen>
+    <dimen name="dialog_top_margin">15dp</dimen>
+    <dimen name="dialog_image">110dp</dimen>
+    <dimen name="dialog_cardview">95dp</dimen>
+    <dimen name="dialog_border_radius">50dp</dimen>
+
+    <dimen name="feed1_padding">15dp</dimen>
+    <dimen name="feed1_image">200dp</dimen>
+    <dimen name="feed1_image_top_margin">80dp</dimen>
+    <dimen name="feed1_top_margin">40dp</dimen>
+    <dimen name="feed1_title_size">30sp</dimen>
+    <dimen name="feed1_text_size">16sp</dimen>
+    <dimen name="feed1_text_padding">35dp</dimen>
+
+    <dimen name="review_padding">10dp</dimen>
+    <dimen name="review_text_size">20sp</dimen>
+    <dimen name="review_margin_top">20sp</dimen>
+
+    <dimen name="feed_row_image">48dp</dimen>
+    <dimen name="feed_row_margin">16dp</dimen>
+
 </resources>

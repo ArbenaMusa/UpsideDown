@@ -13,11 +13,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingTop="@dimen/async_padding"
+        android:paddingBottom="@dimen/async_padding"
         android:text="@string/activity_log"
         android:textColor="@color/colorWhite"
-        android:textSize="25dp" />
+        android:textSize="@dimen/async_title" />
 
     <Button
         android:id="@+id/asyncTask"
@@ -27,22 +27,23 @@
         android:background="@drawable/rounded_button"
         android:text="@string/get_app_history"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp" />
+        android:textSize="@dimen/async_text" />
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="300dp"
-        android:layout_height="300dp" />
+        android:layout_width="@dimen/async_image"
+        android:layout_height="@dimen/async_image" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/story"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/async_padding"
             android:textColor="@color/colorWhite"
-            android:textSize="20dp"
-            android:padding="30dp"/>
+            android:textSize="@dimen/async_text" />
     </ScrollView>
 </LinearLayout>

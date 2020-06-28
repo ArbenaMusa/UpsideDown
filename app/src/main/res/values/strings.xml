@@ -94,4 +94,5 @@
     <string name="get_app_history">Get app history</string>
     <string name="feed_description_image">Feed Description Image</string>
     <string name="search_for_help">Search for help</string>
+    <string name="phone_number">Phone number</string>
 </resources>

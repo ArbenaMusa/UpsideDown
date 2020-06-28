@@ -10,23 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/main_fragment_padding">
+        android:padding="@dimen/review_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/etFeedback"
             app:layout_constraintTop_toTopOf="@+id/etFeedback">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/feedback_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="@string/feedback_title"
-                android:textSize="20sp"
+                android:textSize="@dimen/review_text_size"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/etFeedback"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -37,21 +37,21 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/review_margin_top"
                 android:numStars="5"
                 android:rating="5"
                 android:stepSize="1"
-                app:layout_constraintEnd_toEndOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintEnd_toEndOf="@+id/feedback_title"
+                app:layout_constraintStart_toStartOf="@+id/feedback_title"
+                app:layout_constraintTop_toBottomOf="@+id/feedback_title" />
 
             <TextView
                 android:id="@+id/tvRatingScale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text= "@string/five"
-                android:textSize="16sp"
+                android:layout_marginTop="@dimen/review_margin_top"
+                android:text="@string/five"
+                android:textSize="@dimen/review_text_size"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/ratingBar"
                 app:layout_constraintStart_toStartOf="@+id/ratingBar"
@@ -61,22 +61,22 @@
                 android:id="@+id/etFeedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/review_margin_top"
                 android:ems="10"
                 android:gravity="top"
                 android:hint="@string/feedback_text"
                 android:inputType="textMultiLine"
                 android:lines="5"
-                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintBottom_toTopOf="@+id/feedback_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRatingScale"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btnSubmit"
+                android:id="@+id/feedback_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/review_margin_top"
                 android:background="#0a1c20"
                 android:text="@string/send_feedback"
                 android:textColor="@android:color/white"

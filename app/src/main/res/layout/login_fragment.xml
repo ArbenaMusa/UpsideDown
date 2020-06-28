@@ -44,6 +44,6 @@
         android:background="@drawable/rounded_button"
         android:text="@string/log_in"
         android:textColor="@color/colorWhite"
-        android:textSize="22sp" />
+        android:textSize="@dimen/log_text_size" />
 
 </LinearLayout>
