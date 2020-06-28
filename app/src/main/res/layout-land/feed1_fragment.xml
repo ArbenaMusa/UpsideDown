@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feed.Feed1Fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="@dimen/feed1_padding">
+
+        <ImageView
+            android:id="@+id/feed_description_image"
+            android:layout_width="@dimen/feed1_image"
+            android:layout_height="@dimen/feed1_image"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/feed_description_image"
+            android:scaleType="centerCrop" />
+        <LinearLayout
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/feed_description_image"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/job_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/feed1_top_margin"
+                android:textSize="@dimen/feed1_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/job_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/feed1_top_margin"
+                android:padding="@dimen/feed1_text_padding"
+                android:textAlignment="center"
+                android:textSize="@dimen/feed1_text_size" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/search_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/feed1_top_margin"
+            android:layout_alignParentBottom="true"
+            android:background="#0a1c20"
+            android:text="@string/search_for_help"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+</FrameLayout>

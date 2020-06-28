@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/feed_padding"
+    tools:context=".feed.FeedFragment">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:padding="@dimen/feed_padding">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/electrician"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/electrician"
+                    android:src="@drawable/electrician" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/electrician"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/plumber"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/plumber"
+                    android:src="@drawable/plumber" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/plumber"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/painter"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/painter"
+                    android:src="@drawable/painter" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/painter"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/housekeeper"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/housekeeper"
+                    android:src="@drawable/housekeeper" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/housekeeper"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/gardener"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/gardener"
+                    android:src="@drawable/gardener" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/gardener"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chimneysweep"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/chimneysweep"
+                    android:src="@drawable/chimney" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/chimneysweep"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mechanic"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/mechanic"
+                    android:src="@drawable/mechanic" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/mechanic"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mjeshter"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="@dimen/feed_margin"
+            app:cardCornerRadius="@dimen/feed_card_radius"
+            tools:targetApi="lollipop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/feed_card_height"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/feed_image"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:layout_weight="2"
+                    android:contentDescription="@string/mjeshter"
+                    android:src="@drawable/user" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/feed_margin"
+                    android:text="@string/mjeshter"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/feed_text_size" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+</ScrollView>
