@@ -7,6 +7,24 @@ public class User {
     public String email;
     public String role;
     public String occupation;
+    public String phone;
+
+    public User(String name, String surname, String email, String role, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.role = role;
+        this.phone = phone;
+    }
+
+    public User(String name, String surname, String email, String role, String occupation, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.role = role;
+        this.occupation = occupation;
+        this.phone = phone;
+    }
 
     public String getEmail() {
         return email;
@@ -26,6 +44,10 @@ public class User {
 
     public String getOccupation() {
         return occupation;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setEmail(String email) {
@@ -48,4 +70,7 @@ public class User {
         this.occupation = occupation;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

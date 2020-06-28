@@ -51,7 +51,7 @@ public class Feed2Fragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
 
-    final List<String> workmanList = new ArrayList<>();
+    final List<User> workmanList = new ArrayList<>();
     String title;
 
     private FirebaseFirestore firestore;
@@ -68,6 +68,9 @@ public class Feed2Fragment extends Fragment {
         imageCall = view.findViewById(R.id.btn_call);
 
         title = "Found " + searchedJob + "s";
+
+        User newuser = new User("arbena", "musa", "arbena@gmail.com","boss", "044716087");
+        workmanList.add(newuser);
 
         Toolbar toolbar = view.findViewById(R.id.search_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -95,7 +98,7 @@ public class Feed2Fragment extends Fragment {
                             List<User> items = documentSnapshots.toObjects(User.class);
                             for (int i = 0; i < items.size(); i++) {
                                 if (items.get(i).getRole().equals("Workman")) {
-                                    workmanList.add(items.get(i).getName());
+                                    workmanList.add(items.get(i));
                                     Log.v("Name", items.get(i).getName());
                                 }
                             }
@@ -110,19 +113,13 @@ public class Feed2Fragment extends Fragment {
                 });
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerAdapter = new RecyclerAdapter(workmanList);
+        recyclerAdapter = new RecyclerAdapter(workmanList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-//        imageCall.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                makePhoneCall();
-//            }
-//        });
         return view;
     }
 
@@ -137,24 +134,24 @@ public class Feed2Fragment extends Fragment {
         menuInflater.inflate(R.menu.main_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                recyclerAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                recyclerAdapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
     }
 
     /**
      * This method start the action of phone call
      */
-    private void makePhoneCall() {
+    public void makePhoneCall() {
         String number = "045656448";
         if (number.trim().length() > 0) {
             if (ContextCompat.checkSelfPermission(getActivity(),

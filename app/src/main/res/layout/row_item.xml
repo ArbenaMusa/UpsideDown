@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    >
+    android:background="?attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/imageView"
@@ -49,10 +48,9 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rowCountTextView"
         android:src="@drawable/ic_call"
-        android:background="@drawable/rounded_button" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rowCountTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
