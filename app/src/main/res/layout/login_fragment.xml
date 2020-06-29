@@ -42,6 +42,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remember Me"
+        android:id="@+id/saveLoginCheckBox" />
+
+
     <Button
         android:id="@+id/log_in_btn"
         android:layout_width="@dimen/log_button_width"
