@@ -5,7 +5,7 @@
     <dimen name="small_title_top_padding">40sp</dimen>
     <dimen name="small_title_size">50sp</dimen>
 
-    <dimen name="main_log_layout_height">600dp</dimen>
+    <dimen name="main_log_layout_height">650dp</dimen>
     <dimen name="log_fragment_bottom_padding">60dp</dimen>
     <dimen name="log_fragment_padding">100sp</dimen>
     <dimen name="log_button_width">420dp</dimen>

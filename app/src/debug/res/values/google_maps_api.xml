@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=A9:15:95:B8:6E:B1:F9:52:B7:CD:31:D7:BC:BF:36:7A:40:19:E6:7D%3Bcom.am.upsidedown
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.am.upsidedown
+
+    SHA-1 certificate fingerprint:
+    A9:15:95:B8:6E:B1:F9:52:B7:CD:31:D7:BC:BF:36:7A:40:19:E6:7D
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAiva2nvseEvn6uLcB_QWpUO_6R404l5tI</string>
+</resources>

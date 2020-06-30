@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(feedActivity);
                 break;
             case R.id.map:
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.map2:
                 break;
