@@ -1,13 +1,8 @@
 package com.am.upsidedown;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,13 +12,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -119,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
         internalDb = new DatabaseHandler(this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
-       btnPick.setOnClickListener(new View.OnClickListener() {
+        btnPick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -132,9 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                 startActivityForResult(getPickImageChooserIntent(), IMAGE_RESULT);
-
+                startActivityForResult(getPickImageChooserIntent(), IMAGE_RESULT);
             }
         });
 
@@ -184,7 +175,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         addItemsOnSpinner2();
-
         addListenerOnSpinnerItemSelection();
 
         permissions.add(CAMERA);
@@ -192,15 +182,10 @@ public class RegisterActivity extends AppCompatActivity {
         permissions.add(READ_EXTERNAL_STORAGE);
         permissionsToRequest = findUnAskedPermissions(permissions);
 
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-
             if (permissionsToRequest.size() > 0)
                 requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
         }
-
     }
 
     public Intent getPickImageChooserIntent() {
@@ -247,47 +232,38 @@ public class RegisterActivity extends AppCompatActivity {
         return chooserIntent;
     }
 
-
     private Uri getCaptureImageOutputUri() {
         Uri outputFileUri = null;
         File getImage = getExternalFilesDir("");
         if (getImage != null) {
-            outputFileUri = Uri.fromFile(new File(getImage.getPath(), "profile.png"));
+            outputFileUri = Uri.fromFile(new File(getImage.getPath(),  mAuth.getUid() + ".png"));
         }
+        uri = outputFileUri;
+        filePath = mAuth.getUid() + ".png";
         return outputFileUri;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == GALLERY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                uri = data.getData();
-               String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-               filePath = "JPEG_" + timeStamp + "." + getFilExt(uri);
-               // String filePath = getImageFilePath(data);
-                Log.d("tag", "onActivityResult: Gallery Image Uri:  " + filePath);
-                takenImage.setImageURI(uri);
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            uri = data.getData();
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            filePath = "JPEG_" + timeStamp + "." + getFilExt(uri);
+            // String filePath = getImageFilePath(data);
+            Log.d("tag", "onActivityResult: Gallery Image Uri:  " + filePath);
+            takenImage.setImageURI(uri);
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_RESULT) {
+            String filePath = getImageFilePath(data);
+            if (filePath != null) {
+                Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+                takenImage.setImageBitmap(selectedImage);
             }
         }
-       if (resultCode == Activity.RESULT_OK) {
-
-          if (requestCode == IMAGE_RESULT) {
-
-             String filePath = getImageFilePath(data);
-             if (filePath != null) {
-                   Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-                   takenImage.setImageBitmap(selectedImage);
-                }
-            }
-
-       }
 
     }
-
 
     private String getImageFromFilePath(Intent data) {
         boolean isCamera = data == null || data.getData() == null;
@@ -301,14 +277,6 @@ public class RegisterActivity extends AppCompatActivity {
         return getImageFromFilePath(data);
     }
 
-  /**  private String getPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Audio.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-           **/
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -320,7 +288,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        // get the file url
         picUri = savedInstanceState.getParcelable("pic_uri");
     }
 
@@ -362,38 +329,25 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
-        switch (requestCode) {
-
-            case ALL_PERMISSIONS_RESULT:
-                for (String perms : permissionsToRequest) {
-                    if (!hasPermission(perms)) {
-                        permissionsRejected.add(perms);
-                    }
+        if (requestCode == ALL_PERMISSIONS_RESULT) {
+            for (String perms : permissionsToRequest) {
+                if (!hasPermission(perms)) {
+                    permissionsRejected.add(perms);
                 }
+            }
 
-                if (permissionsRejected.size() > 0) {
-
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (shouldShowRequestPermissionRationale(permissionsRejected.get(0))) {
-                            showMessageOKCancel("These permissions are mandatory for the application. Please allow access.",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-
-                                                requestPermissions(permissionsRejected.toArray(new String[permissionsRejected.size()]), ALL_PERMISSIONS_RESULT);
-                                            }
-                                        }
-                                    });
-                            return;
-                        }
-                    }
-
-                }
-
-                break;
+            if (permissionsRejected.size() > 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && shouldShowRequestPermissionRationale(permissionsRejected.get(0))) {
+                showMessageOKCancel("These permissions are mandatory for the application. Please allow access.",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    requestPermissions(permissionsRejected.toArray(new String[permissionsRejected.size()]), ALL_PERMISSIONS_RESULT);
+                                }
+                            }
+                        });
+                return;
+            }
         }
 
     }
@@ -478,24 +432,4 @@ public class RegisterActivity extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
-
-    private File createImageFile() throws IOException {
-        //Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        //File storageDir =   getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName, /* prefix */
-                ".jpg", /* suffix */
-                storageDir    /* directory */
-        );
-
-        //Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    
-
 }
