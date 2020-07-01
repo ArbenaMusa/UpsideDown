@@ -73,9 +73,9 @@ Bonus:
 
 ## Implementimi i kërkesave
 
-| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) | ![Demo](READMEresources/rememberMe.gif) |
+| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) |
 | :---: |:---:| :---: | :---: |
-| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* | *Ruajtja e të dhënave për kyçje edhe pas daljes nga aplikacioni* |
+| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* | 
   
   
 | ![Demo](READMEresources/joblist.gif) | ![Demo](READMEresources/feedback.gif) |
