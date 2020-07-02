@@ -1,5 +1,7 @@
 # UpsideDown
 
+![Demo](READMEresources/upsidedown.gif) 
+
 Jeni duke e kërkuar me orë të tëra një instalues uji, kopshtar, elektricist, apo një tjetër mjeshtër dhe nuk e gjenë dot një të tillë që është i duhuri apo që ka kohë për të kryer punën që ju keni nevojë...?!
 
 Me përdorimin e aplikacionit tonë UpsideDown do të keni mundësi të shihni listën e të gjithë atyre personave që janë adekuatë për punën e tyre dhe do të mund të komunikoni me ta e të gjeni zgjidhje të shpejtë.
@@ -42,7 +44,7 @@ me të gjithë personat që ofrojnë këto shërbime duke ua lehtësuar jetën d
     + assests/occupation.json => Feed1Fragment (Gjenerimi dinamik i jobList dhe përshkrimeve të tyre)
 - [x] Pune me shume threada permes AsyncTask
     + AsyncActivity (Nxjerrja e listës së përdoruesve të regjistruar në aplikacion nga pajisja aktuale)
-- [ ] Se paku nje librari te jashtme
+- [x] Se paku nje librari te jashtme
 - [x] Nje databaze te brendshme
     + SQLite database që ruan të gjithë përdoruesit e regjistruar nga pajisja aktuale
 - [x] Shared preferences 
@@ -69,15 +71,25 @@ Bonus:
     + android.hardware.camera
     + andorid.hardware.camera.autofocus
     + android.hardware.camera.flash
-- [ ] Implementimi i hartave [me cluster]
+- [x] Implementimi i hartave [me cluster]
 
 ## Implementimi i kërkesave
 
-| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) |
-| :---: |:---:| :---: | :---: |
-| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* | 
+| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) | ![Demo](READMEresources/rememberme.gif)| 
+| :---: |:---:| :---: | :---: | :---: |
+| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* | *Shared preferences* |
   
+Regjistrimi dhe kyçja e përdoruesve ëstë bërë duke përdorur Firebase Authentication, profili i përdoruesit ruhet në Firebase Database, ndërsa fotoja e profilit ruhet në Firebase Storage. Remember Me i ruan email dhe password në Shared preferences.
   
-| ![Demo](READMEresources/joblist.gif) | ![Demo](READMEresources/feedback.gif) |
-| :---: |:---:|
-| *Kërkimi i një punëtori* | *Dërgimi i feedback për aplikacionin* |
+| ![Demo](READMEresources/asynchistory.gif)| ![Demo](READMEresources/joblist.gif) | ![Demo](READMEresources/feedback.gif) | ![Demo](READMEresources/profile.gif) |
+| :---: | :---: | :---: | :---: |
+| *AsyncTask* | *Lista e punonjësve* | *App feedback* | *User profile* |
+
+Përmes AsyncTask nxjerret nga të dhënat e ruajtura në databazën lokale lista e të gjithë përdoruesve të regjistruar nga pajisja aktuale, ndërsa në feedback ruhet në Firebase Database.
+
+## Bonus
+
+| ![Demo](READMEresources/takepicture.gif)| ![Demo](READMEresources/map.gif)|
+| :---: | :---: |
+| *Komunikimi me pjesë harduerike* | *Implementimi i clustered maps* |
+
