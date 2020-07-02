@@ -1,27 +1,31 @@
 package com.am.upsidedown;
 
-import androidx.fragment.app.FragmentActivity;
-
+import android.content.Context;
 import android.os.Bundle;
 
+import com.am.upsidedown.models.Person;
+import com.am.upsidedown.models.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends BaseGoogleMapsActivity {
 
-    private GoogleMap mMap;
+
+
+
+    private ClusterManager<Person> mClusterManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -36,10 +40,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        setupMap(googleMap);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-26.167616, 28.079329), 10));
 
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mClusterManager = new ClusterManager<>(this, googleMap);
+
+        googleMap.setOnCameraIdleListener(mClusterManager);
+        googleMap.setOnMarkerClickListener(mClusterManager);
+        googleMap.setOnInfoWindowClickListener(mClusterManager);
+        addPersonItems();
+        mClusterManager.cluster();
+    }
+
+
+    private void addPersonItems() {
+        for (int i = 0; i < 3; i++) {
+            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina1", "https://twitter.com/pjapplez" ));
+            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina2", "https://twitter.com/pjapplez" ));
+            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina3","https://twitter.com/pjapplez" ));
+        }
+    }
+
+    private class RenderClusterInfoWindow extends DefaultClusterRenderer<Person> {
+
+        RenderClusterInfoWindow(Context context, GoogleMap map, ClusterManager<Person> clusterManager) {
+            super(context, map, clusterManager);
+        }
+
+        @Override
+        protected void onClusterRendered(Cluster<Person> cluster, Marker marker) {
+            super.onClusterRendered(cluster, marker);
+        }
+
+        @Override
+        protected void onBeforeClusterItemRendered(Person item, MarkerOptions markerOptions) {
+            markerOptions.title(item.getName());
+
+            super.onBeforeClusterItemRendered(item, markerOptions);
+        }
     }
 }
