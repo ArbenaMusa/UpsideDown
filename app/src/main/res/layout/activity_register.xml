@@ -70,7 +70,7 @@
         android:autofillHints=""
         android:background="#bdc3c7"
         android:hint="@string/phone_number"
-        android:inputType="text"
+        android:inputType="phone"
         tools:ignore="TextFields"
         android:textSize="@dimen/log_text_size"/>
 
