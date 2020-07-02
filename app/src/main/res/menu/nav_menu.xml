@@ -41,10 +41,7 @@
                 android:id="@+id/map"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="@string/map" />
-            <item
-                android:id="@+id/map2"
-                android:icon="@drawable/ic_launcher_background"
-                android:title="@string/map2" />
+
         </menu>
     </item>
 
