@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.am.upsidedown.models.Person;
-import com.am.upsidedown.models.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,18 +15,12 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
 public class MapsActivity extends BaseGoogleMapsActivity {
 
-
-
-
     private ClusterManager<Person> mClusterManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
-
 
     /**
      * Manipulates the map once available.
@@ -41,7 +34,7 @@ public class MapsActivity extends BaseGoogleMapsActivity {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         setupMap(googleMap);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-26.167616, 28.079329), 10));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(42.6252695, 20.8959508), 10));
 
         mClusterManager = new ClusterManager<>(this, googleMap);
 
@@ -52,12 +45,12 @@ public class MapsActivity extends BaseGoogleMapsActivity {
         mClusterManager.cluster();
     }
 
-
     private void addPersonItems() {
-        for (int i = 0; i < 3; i++) {
-            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina1", "https://twitter.com/pjapplez" ));
-            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina2", "https://twitter.com/pjapplez" ));
-            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "medina3","https://twitter.com/pjapplez" ));
+        for (int i = 0; i < 10; i++) {
+            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "Medina", "Drenas" ));
+            mClusterManager.addItem(new Person(43.01883455, 20.80966632, "Medina1", "Prishtine" ));
+            mClusterManager.addItem(new Person(43.08894918, 19.03106689, "Arbena","Gjakove" ));
+            mClusterManager.addItem(new Person(42.2089656, 20.7404242, "Arbena1","Prizren"));
         }
     }
 

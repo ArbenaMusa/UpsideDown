@@ -8,11 +8,11 @@ public class Person implements ClusterItem {
 
     private final LatLng mPosition;
     private String name;
-    private String twitterHandle;
+    private String cityHandle;
 
-    public Person(double lat, double lng, String name, String twitterHandle) {
+    public Person(double lat, double lng, String name, String cityHandle) {
         this.name = name;
-        this.twitterHandle = twitterHandle;
+        this.cityHandle = cityHandle;
         mPosition = new LatLng(lat, lng);
     }
 
@@ -36,6 +36,6 @@ public class Person implements ClusterItem {
 
     @Override
     public String getSnippet() {
-        return twitterHandle;
+        return cityHandle;
     }
 }
