@@ -75,17 +75,17 @@ Bonus:
 
 ## Implementimi i kërkesave
 
-| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) | ![Demo](READMEresources/rememberme.gif)| 
-| :---: |:---:| :---: | :---: | :---: |
-| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* | *Shared preferences* |
+| ![Demo](READMEresources/signup.gif) | ![Demo](READMEresources/register.gif) | ![Demo](READMEresources/logout.gif) | ![Demo](READMEresources/login.gif) | 
+| :---: | :---: | :---: | :---: | 
+| *Regjistrimi i një përdoruesi të ri* | *Regjistrimi i profilit të përdoruesit*| *Logout* | *Kyçja e përdoruesit ekzistues* |
   
-Regjistrimi dhe kyçja e përdoruesve ëstë bërë duke përdorur Firebase Authentication, profili i përdoruesit ruhet në Firebase Database, ndërsa fotoja e profilit ruhet në Firebase Storage. Remember Me i ruan email dhe password në Shared preferences.
+Regjistrimi dhe kyçja e përdoruesve ëstë bërë duke përdorur Firebase Authentication, profili i përdoruesit ruhet në Firebase Database, ndërsa fotoja e profilit ruhet në Firebase Storage.
   
-| ![Demo](READMEresources/asynchistory.gif)| ![Demo](READMEresources/joblist.gif) | ![Demo](READMEresources/feedback.gif) | ![Demo](READMEresources/profile.gif) |
-| :---: | :---: | :---: | :---: |
-| *AsyncTask* | *Lista e punonjësve* | *App feedback* | *User profile* |
+| ![Demo](READMEresources/asynchistory.gif)| ![Demo](READMEresources/joblist.gif) | ![Demo](READMEresources/feedback.gif) | ![Demo](READMEresources/profile.gif) | ![Demo](READMEresources/rememberme.gif)| 
+| :---: | :---: | :---: | :---: | :---: |
+| *AsyncTask* | *Lista e punonjësve* | *App feedback* | *User profile* | *Shared preferences* |
 
-Përmes AsyncTask nxjerret nga të dhënat e ruajtura në databazën lokale lista e të gjithë përdoruesve të regjistruar nga pajisja aktuale, ndërsa në feedback ruhet në Firebase Database.
+Përmes AsyncTask nxjerret nga të dhënat e ruajtura në databazën lokale lista e të gjithë përdoruesve të regjistruar nga pajisja aktuale, ndërsa në feedback ruhet në Firebase Database. Remember Me i ruan email dhe password në Shared preferences.
 
 ## Bonus
 
@@ -93,3 +93,8 @@ Përmes AsyncTask nxjerret nga të dhënat e ruajtura në databazën lokale list
 | :---: | :---: |
 | *Komunikimi me pjesë harduerike* | *Implementimi i clustered maps* |
 
+## Members
+
+[Arbena Musa](https://github.com/ArbenaMusa)
+
+[Medina Krelani](https://github.com/MedinaKrelani)
