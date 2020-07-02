@@ -57,6 +57,6 @@ public  abstract class BaseGoogleMapsActivity extends AppCompatActivity implemen
     @Override
     protected void onResume() {
         super.onResume();
-        //createGoogleMap();
+        createGoogleMap();
     }
 }

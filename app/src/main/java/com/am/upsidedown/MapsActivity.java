@@ -34,7 +34,7 @@ public class MapsActivity extends BaseGoogleMapsActivity {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         setupMap(googleMap);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(42.6252695, 20.8959508), 10));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(42.6252695, 20.8959508), 7));
 
         mClusterManager = new ClusterManager<>(this, googleMap);
 
@@ -47,10 +47,10 @@ public class MapsActivity extends BaseGoogleMapsActivity {
 
     private void addPersonItems() {
         for (int i = 0; i < 10; i++) {
-            mClusterManager.addItem(new Person(42.6252695, 20.8959508, "Medina", "Drenas" ));
-            mClusterManager.addItem(new Person(43.01883455, 20.80966632, "Medina1", "Prishtine" ));
-            mClusterManager.addItem(new Person(43.08894918, 19.03106689, "Arbena","Gjakove" ));
-            mClusterManager.addItem(new Person(42.2089656, 20.7404242, "Arbena1","Prizren"));
+            mClusterManager.addItem(new Person(42.6252695 + (float) i / 100, 20.8959508 + (float) i / 100, "Drenas", "Drenas"));
+            mClusterManager.addItem(new Person(42.656087 + (float) i / 100, 21.168082 + (float) i / 100, "Prishtine", "Prishtine"));
+            mClusterManager.addItem(new Person(42.371804 + (float) i / 100, 20.437740 + (float) i / 100, "Gjakove", "Gjakove"));
+            mClusterManager.addItem(new Person(42.2089656 + (float) i / 100, 20.7404242 + (float) i / 100, "Prizren", "Prizren"));
         }
     }
 
